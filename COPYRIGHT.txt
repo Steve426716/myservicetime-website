@@ -1,5 +1,5 @@
 MyServiceTime
-Copyright (c) 2026 the owner of MyServiceTime. All rights reserved.
+Copyright (c) 2026 Steve Dieubon. All rights reserved.
 
 The MyServiceTime app, including its name, logo, design, texts, pictures and source code, is protected by
 copyright. No part of it may be copied, sold, rented, rebuilt, translated, published or used to make

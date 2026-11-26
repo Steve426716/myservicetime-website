@@ -24,6 +24,6 @@ window.DAILYTIME_CONFIG = {
 
   // Shown to customers: in the app's "Support" link and on the Privacy Policy / Terms pages.
   supportEmail: "myservicetimesupport@gmail.com",     // e.g. "support@yourdomain.com"
-  ownerName: "MyServiceTime",        // your name or your business name
+  ownerName: "Steve Dieubon",        // your name or your business name
   ownerCountry: "the United States",     // the country whose laws apply to the Terms (where you live / your business is)
 };
