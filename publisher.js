@@ -102,7 +102,7 @@ function nextOpeningStep() {
   if (!store.demo && !myCountry()) return openCountryModal();
   if (typeof askAccountAfterSetup === "function" && askAccountAfterSetup()) return; // first open: "Do you have an account?" (after About you + country)
   if (!pubStatus() && store.getItem("dailytime.pubSkipSetup") !== "1") return openStatusModal(true); // then the publisher status, then the welcome
-  if (maybeWelcome()) return; // the welcome from Steve (once); the tour starts when it is closed
+  if (maybeWelcome()) return; // the welcome from Steeve (once); the tour starts when it is closed
   if (typeof startTour === "function" && !tour && store.getItem(TOUR_DONE_KEY) !== "1") setTimeout(() => startTour("welcome"), 300);
 }
 

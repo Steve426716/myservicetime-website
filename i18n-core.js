@@ -67,7 +67,7 @@ function applyStaticText() {
   const cfgC = window.DAILYTIME_CONFIG || {};
   const years = new Date().getFullYear() > 2026 ? `2026–${new Date().getFullYear()}` : "2026";
   document.querySelectorAll("[data-copyright]").forEach((el) => { el.textContent = t("copyright", { year: years, owner: cfgC.ownerName || "MyServiceTime" }); });
-  // "MyServiceTime is owned by Steve Dieubon." (the website)
+  // "MyServiceTime is owned by Steeve Dieubon." (the website)
   document.querySelectorAll("[data-owner]").forEach((el) => { el.textContent = cfgC.ownerName ? t("ownerLine", { owner: cfgC.ownerName }) : ""; });
   // "Support" links: write to the email in config.js (hidden until one is set)
   const support = window.DAILYTIME_CONFIG?.supportEmail || "";

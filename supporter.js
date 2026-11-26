@@ -66,7 +66,7 @@ function supporterHtml(where) {
   const msg = spMsgText ? `<p class="addr-msg ${spMsgKind} sp-msg">${spEsc(spMsgText)}</p>` : "";
   const note = `<section class="sp-box sp-note">
       <h3 class="sp-label"><span class="sp-lbl-ic" aria-hidden="true">♡</span> ${spEsc(t("spNoteLabel"))}</h3>
-      <div class="sp-paper"><p>${spEsc(t("spNote"))}</p><p class="sp-sign">Steve Dieubon</p></div>
+      <div class="sp-paper"><p>${spEsc(t("spNote"))}</p><p class="sp-sign">Steeve Dieubon</p></div>
     </section>`;
   const perks = ["spPerk1", "spPerk2", "spPerk3", "spPerk4", "spPerk5"].map((k, i) =>
     `<li><span class="sp-perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${SP_PERK_ICONS[i]}</svg></span>${spEsc(t(k))}</li>`).join("");
@@ -84,7 +84,7 @@ function supporterHtml(where) {
     </section>`;
   const tipInner = tipDone
     ? `<div class="sp-thanks"><p class="sp-thanks-title">${spEsc(t("tipThanksTitle"))}</p><p>${spEsc(t("tipThanks"))}</p>
-        <p class="sp-sign">${spEsc(t("tipLove"))}<br>Steve Dieubon</p>
+        <p class="sp-sign">${spEsc(t("tipLove"))}<br>Steeve Dieubon</p>
         <button type="button" class="link-btn" data-sp="tipback">${spEsc(t("tipAgain"))}</button></div>`
     : `<p class="sp-tip-text">${spEsc(t("tipText"))}</p>
        <div class="sp-tips">${TIP_PRICES.map((c) => `<button type="button" class="sp-tip${!tipOther && c === tipPick ? " on" : ""}" data-sp="tippick" data-c="${c}" aria-pressed="${!tipOther && c === tipPick}">${spEsc(spMoney(c))}</button>`).join("")}</div>
