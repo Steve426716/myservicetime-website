@@ -3009,3 +3009,12 @@ html[data-accent="purple"] :is(.topbar, .l-nav), html:not([data-accent]) :is(.to
 .sp-tip-hint { margin: 6px 2px 0; font-size: .78rem; opacity: .8; }
 .sp-tip-hint.bad { color: #ef4444; opacity: 1; font-weight: 600; }
 .sp-tip-cta:disabled { opacity: .55; cursor: not-allowed; }
+/* The welcome covers the whole app until "Start using the app" (its only way out) */
+#welcomeModal { align-items: stretch; background: var(--bg); }
+#welcomeModal .sp-sheet { max-width: none; max-height: none; height: 100%; border-radius: 0; box-shadow: none; animation: none;
+  display: flex; flex-direction: column;
+  padding: calc(20px + env(safe-area-inset-top)) max(18px, calc((100% - 480px) / 2)) calc(20px + env(safe-area-inset-bottom)); }
+#welcomeModal .sp-handle { display: none; }
+#welcomeModal .wl-top, #welcomeModal .sp-note { flex: none; }
+#welcomeModal .wl-top { margin-top: auto; }
+#welcomeModal #wlStart { flex: none; margin-top: 6px; margin-bottom: auto; }
