@@ -18,7 +18,7 @@
 
 const CFG = window.DAILYTIME_CONFIG || {};
 // Raise this (and the ?v= numbers in index.html) when you publish an update, so browsers fetch the new files.
-const APP_VERSION = "309";
+const APP_VERSION = "310";
 const PBKDF2_ROUNDS = 310000;
 const KEEP_KEY = "dailytime.keep";
 const dekKey = (uid) => `dailytime.dek.${uid}`;

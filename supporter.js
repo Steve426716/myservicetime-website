@@ -66,7 +66,7 @@ function supporterHtml(where) {
   const msg = spMsgText ? `<p class="addr-msg ${spMsgKind} sp-msg">${spEsc(spMsgText)}</p>` : "";
   const note = `<section class="sp-box sp-note">
       <h3 class="sp-label"><span class="sp-lbl-ic" aria-hidden="true">♡</span> ${spEsc(t("spNoteLabel"))}</h3>
-      <div class="sp-paper"><p>${spEsc(t("spNote"))}</p><p class="sp-sign">Steeve Dieubon</p></div>
+      <div class="sp-paper"><p>${spEsc(t("spNote"))}</p><p class="sp-sign">— Steeve</p></div>
     </section>`;
   const perks = ["spPerk1", "spPerk2", "spPerk3", "spPerk4", "spPerk5"].map((k, i) =>
     `<li><span class="sp-perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${SP_PERK_ICONS[i]}</svg></span>${spEsc(t(k))}</li>`).join("");
