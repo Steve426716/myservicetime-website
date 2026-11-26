@@ -18,7 +18,7 @@
 
 const CFG = window.DAILYTIME_CONFIG || {};
 // Raise this (and the ?v= numbers in index.html) when you publish an update, so browsers fetch the new files.
-const APP_VERSION = "305";
+const APP_VERSION = "306";
 const PBKDF2_ROUNDS = 310000;
 const KEEP_KEY = "dailytime.keep";
 const dekKey = (uid) => `dailytime.dek.${uid}`;
@@ -1164,7 +1164,7 @@ document.addEventListener("click", (e) => {
   // the website's buttons: "Start free" begins the setup, "I already have an account" signs in
   document.querySelectorAll("[data-open]").forEach((btn) => btn.addEventListener("click", () => {
     const want = btn.dataset.open;
-    if (SITE_PAGE) { location.href = "./" + (want === "signin" ? "#signin" : "#start"); return; } // from /about: into the app
+    if (SITE_PAGE) { location.href = "./" + (want === "signin" ? "#signin" : "#app"); return; } // from /about: into the app
     if (btn.closest("#landing") && (want === "choose" || want === "signup")) return startFirstOpen();
     showMode(want);
   }));
@@ -1175,7 +1175,7 @@ document.addEventListener("click", (e) => {
   authEl("pwLocal").addEventListener("click", cloudToLocal);
   authEl("demoExit").addEventListener("click", () => leaveDemo(""));
   authEl("demoCreate").addEventListener("click", () => openSupport()); // the Supporter popup first, then the account
-  if (location.hash === "#demo") history.replaceState(null, "", location.pathname + location.search); // old demo links: open the app normally
+  if (/^#(demo|app|start)$/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search); // the website's "Open MyServiceTime" (and old demo links): open the app normally
   // used on this device only (no account): open it straight away — unless they asked for the cloud
   const localNow = localStorage.getItem(LOCAL_KEY) === "1" && !/^#(cloud|signin|signup)$/.test(location.hash);
   authEl("authClose").addEventListener("click", closeAuth);
@@ -1225,17 +1225,12 @@ document.addEventListener("click", (e) => {
   if (STORE_APP && !canPayHere() && location.hash === "#signup") history.replaceState(null, "", location.pathname + location.search + "#signin");
   const openFromLink = () => {
     if (SITE_PAGE) return showWebsite();
-    const fromStart = location.hash === "#start"; // "Start free" from the website or Get the app
-    if (fromStart) history.replaceState(null, "", location.pathname + location.search);
     if (localNow) return startLocal();
-    if (fromStart) return startFirstOpen();
     if (location.hash === "#cloud") return showMode("choose"); // "☁️ Cloud" from the app: sign in or create an account
     if (location.hash === "#signin" || location.hash === "#signup") return showMode(location.hash.slice(1));
     // the very first time (phone apps and website): "Set up your profile" first; "Do you have an account?" comes after it
-    if (!localStorage.getItem(ASKED_KEY)) {
-      if (!STORE_APP) return showWebsite(); // the website first; "Start free" begins the setup
-      return startFirstOpen();
-    }
+    // (in a browser, theme.js has already shown the website; its "Open MyServiceTime" comes back here)
+    if (!localStorage.getItem(ASKED_KEY)) return startFirstOpen();
     // first thing when the app opens: "Do you have an account?" (once per visit; closing it shows the home page)
     if (STORE_APP || !sessionStorage.getItem("dailytime.askedAccount")) {
       sessionStorage.setItem("dailytime.askedAccount", "1");

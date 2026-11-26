@@ -7,6 +7,19 @@
     const q = new URLSearchParams(location.search).get("storeapp");
     const store = window.Capacitor?.isNativePlatform?.() || q === "1" || (q !== "0" && localStorage.getItem("dailytime.storeApp") === "1");
     if (store) document.documentElement.classList.add("store-app");
+    // myservicetime.app typed in a browser: the website (get.html) first, even for people who already use the app;
+    // its "Open MyServiceTime" comes back here with #app. The app opens straight away in the phone apps, when added
+    // to the home screen, from links into it (#signin, sign-in emails, payments), and on reloads inside it.
+    if (!store && /\/(index\.html)?$/.test(location.pathname)) {
+      const IN_APP = "dailytime.inApp";
+      const home = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+      const link = location.hash.length > 1 || /[?&](checkout|tip|code|error|type)=/.test(location.search);
+      const nav = (performance.getEntriesByType?.("navigation")[0] || {}).type;
+      const inside = sessionStorage.getItem(IN_APP) === "1" &&
+        (nav === "reload" || nav === "back_forward" || document.referrer.startsWith(location.origin));
+      if (home || link || inside) sessionStorage.setItem(IN_APP, "1");
+      else location.replace("get.html" + location.search.replace(/[?&]?(mock|storeapp=\d)\b/g, "").replace(/^&/, "?"));
+    }
   } catch {}
   // App lock (lock.js): nothing of the app shows until the passcode / Face ID is given
   try {

@@ -47,6 +47,54 @@ async function getCopy() {
   catch { $g("gMsg").textContent = getSiteUrl(); }
 }
 
+// ---------- Open MyServiceTime / Download the app ----------
+const G_CFG = window.DAILYTIME_CONFIG || {};
+const UA = navigator.userAgent;
+const IS_ANDROID = /Android/i.test(UA);
+const IS_IOS = /iPhone|iPad|iPod/i.test(UA) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const PLAY_URL = G_CFG.playStoreUrl || "";
+const APPLE_URL = G_CFG.appStoreId ? `https://apps.apple.com/app/id${G_CFG.appStoreId}` : "";
+const APP_PAGE = new URL("./#app", location.href).href; // MyServiceTime in the browser
+
+/** "Open MyServiceTime": on Android (Chrome, Samsung Internet…) the MyServiceTime app itself when it is on the
+ *  phone; when it isn't — and on every other device — MyServiceTime opens here in the browser. */
+function openAppHref() {
+  if (!IS_ANDROID || /Firefox/i.test(UA)) return APP_PAGE;
+  return "intent://open#Intent;scheme=myservicetime;package=com.myservicetime.app;S.browser_fallback_url=" +
+    encodeURIComponent(APP_PAGE) + ";end";
+}
+document.querySelectorAll("[data-open-app]").forEach((a) => { a.href = openAppHref(); });
+
+// the browser's own "Install app" (Android, computers): MyServiceTime on the home screen, like a store app
+let gInstallPrompt = null;
+addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); gInstallPrompt = e; });
+addEventListener("appinstalled", () => { gInstallPrompt = null; $g("gDlMsg").textContent = t("getInstalledMsg"); });
+
+/** "Download the app": the store page when the app is published there; otherwise the browser's install window;
+ *  otherwise the steps to put it on the home screen. */
+async function getDownload() {
+  const store = IS_ANDROID ? PLAY_URL : IS_IOS ? APPLE_URL : "";
+  if (store) { location.href = store; return; }
+  if (gInstallPrompt) {
+    const p = gInstallPrompt; gInstallPrompt = null;
+    try { await p.prompt(); const r = await p.userChoice; if (r?.outcome === "accepted") $g("gDlMsg").textContent = t("getInstalledMsg"); return; } catch {}
+  }
+  const card = $g("gInstall");
+  card.scrollIntoView({ behavior: "smooth", block: "start" });
+  card.classList.remove("g-flash"); void card.offsetWidth; card.classList.add("g-flash");
+}
+
+/** The Google Play / App Store buttons: the store page, or "Coming soon" until the app is published there. */
+function paintStores() {
+  for (const [id, url] of [["gPlay", PLAY_URL], ["gApple", APPLE_URL]]) {
+    const a = $g(id);
+    if (url) { a.href = url; a.classList.remove("soon"); a.removeAttribute("aria-disabled"); }
+    else { a.removeAttribute("href"); a.classList.add("soon"); a.setAttribute("aria-disabled", "true"); }
+  }
+}
+paintStores();
+$g("gDownload").addEventListener("click", getDownload);
+
 // the language menu (the same 20 languages as the app)
 const sel = $g("gLang");
 sel.innerHTML = Object.entries(LANGS).map(([code, l]) => `<option value="${code}">${l.name}</option>`).join("");

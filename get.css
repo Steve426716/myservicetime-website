@@ -114,3 +114,17 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; }
 .g-help { margin: 0 0 10px !important; font-size: .95rem; } .g-help[hidden] { display: none; } .g-help a { font-weight: 700; }
 /* the top bar: the same solid dark navy as the app */
 .g-top { background: #101b3f; }
+/* Download: the store buttons ("Coming soon" until the apps are published) and the hero's message */
+.g-stores { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0 18px; }
+.g-store { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 14px; text-decoration: none;
+  background: #101b3f; color: #fff; border: 1px solid #101b3f; min-width: 180px; }
+.g-store svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.g-store span { display: flex; flex-direction: column; line-height: 1.2; }
+.g-store b { font-size: 1.05rem; }
+.g-store small { font-size: .78rem; opacity: .8; display: none; }
+.g-store.soon { background: var(--card); color: var(--muted); border-color: var(--border); cursor: default; }
+.g-store.soon small { display: block; }
+.g-dl-msg:empty { display: none; }
+.g-flash { animation: gFlash 1.6s ease; }
+@keyframes gFlash { 0%, 100% { box-shadow: 0 6px 24px rgba(60, 50, 160, .07); } 30% { box-shadow: 0 0 0 4px rgba(124, 58, 237, .45); } }
+@media (max-width: 860px) { .g-stores { justify-content: center; } }

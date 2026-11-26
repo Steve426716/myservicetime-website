@@ -8,16 +8,16 @@
   <link rel="icon" type="image/svg+xml" href="icons/logo.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="manifest" href="manifest.json" />
-  <script src="theme.js?v=305"></script>
-  <link rel="stylesheet" href="get.css?v=305" />
+  <script src="theme.js?v=306"></script>
+  <link rel="stylesheet" href="get.css?v=306" />
 </head>
 <body>
   <!-- "Get the app": phone + iPad pictures of MyServiceTime, and a QR code to open it or share it (get.js). -->
   <header class="g-top">
-    <a href="./get.html" class="g-brand"><img src="icons/logo.svg?v=305" alt="" width="30" height="30" /> MyServiceTime</a>
+    <a href="./get.html" class="g-brand"><img src="icons/logo.svg?v=306" alt="" width="30" height="30" /> MyServiceTime</a>
     <div class="g-top-right">
       <label class="g-lang">🌐 <select id="gLang" aria-label="Language"></select></label>
-      <a class="g-btn g-btn-light" href="./#start" data-i18n="getOpen"></a>
+      <a class="g-btn g-btn-light" href="./#app" data-open-app data-i18n="getOpen"></a>
     </div>
   </header>
 
@@ -28,21 +28,23 @@
         <h1 data-i18n="getTitle"></h1>
         <p class="g-sub" data-i18n="getSub"></p>
         <div class="g-btns">
-          <a class="g-btn" href="./#start" data-i18n="getOpen"></a>
+          <a class="g-btn" href="./#app" data-open-app data-i18n="getOpen"></a>
+          <button type="button" class="g-btn g-btn-ghost" id="gDownload" data-i18n="getDownload"></button>
           <button type="button" class="g-btn g-btn-ghost" id="gShare" data-i18n="shareBtn"></button>
         </div>
+        <p class="g-msg g-dl-msg" id="gDlMsg" role="status"></p>
       </div>
 
       <!-- an iPad with a phone in front of it, both showing MyServiceTime -->
       <div class="g-devices">
-        <div class="g-ipad" aria-hidden="true"><img src="site/ipad-home.jpg?v=305" alt="" loading="eager" /></div>
-        <div class="g-phone" aria-hidden="true"><img src="site/phone-home.jpg?v=305" alt="" loading="eager" /></div>
+        <div class="g-ipad" aria-hidden="true"><img src="site/ipad-home.jpg?v=306" alt="" loading="eager" /></div>
+        <div class="g-phone" aria-hidden="true"><img src="site/phone-home.jpg?v=306" alt="" loading="eager" /></div>
         <!-- a watch: MyServiceTime's time tracker on the wrist (coming soon) -->
         <div class="g-watch">
           <div class="g-band g-band-top" aria-hidden="true"></div>
           <div class="g-case" aria-hidden="true">
             <div class="g-face">
-              <img src="icons/logo.svg?v=305" alt="" />
+              <img src="icons/logo.svg?v=306" alt="" />
               <span class="g-w-label" data-i18n="getWatchLabel"></span>
               <b class="g-w-time">1:24:09</b>
               <span class="g-w-btns"><i>⏸</i><i>■</i></span>
@@ -59,22 +61,22 @@
       <h2 class="g-h2" data-i18n="getFindTitle"></h2>
       <div class="g-feats">
         <article class="g-feat">
-          <div class="g-mini"><img src="site/f-progress.jpg?v=305" alt="" loading="lazy" /></div>
+          <div class="g-mini"><img src="site/f-progress.jpg?v=306" alt="" loading="lazy" /></div>
           <h3 data-i18n="getF1T"></h3>
           <p data-i18n="getF1D"></p>
         </article>
         <article class="g-feat">
-          <div class="g-mini"><img src="site/f-events.jpg?v=305" alt="" loading="lazy" /></div>
+          <div class="g-mini"><img src="site/f-events.jpg?v=306" alt="" loading="lazy" /></div>
           <h3 data-i18n="getF2T"></h3>
           <p data-i18n="getF2D"></p>
         </article>
         <article class="g-feat">
-          <div class="g-mini"><img src="site/f-assign.jpg?v=305" alt="" loading="lazy" /></div>
+          <div class="g-mini"><img src="site/f-assign.jpg?v=306" alt="" loading="lazy" /></div>
           <h3 data-i18n="getF3T"></h3>
           <p data-i18n="getF3D"></p>
         </article>
         <article class="g-feat">
-          <div class="g-mini"><img src="site/f-territories.jpg?v=305" alt="" loading="lazy" /></div>
+          <div class="g-mini"><img src="site/f-territories.jpg?v=306" alt="" loading="lazy" /></div>
           <h3 data-i18n="getF4T"></h3>
           <p data-i18n="getF4D"></p>
         </article>
@@ -111,8 +113,15 @@
       </div>
     </section>
 
-    <section class="g-card">
+    <section class="g-card" id="gInstall">
       <h2 data-i18n="getInstallTitle"></h2>
+      <!-- the store apps (the links come from config.js once they are published; until then "Coming soon") -->
+      <div class="g-stores">
+        <a class="g-store" id="gPlay" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18.5h.01"/></svg>
+          <span><b>Google Play</b><small data-i18n="getStoreSoon"></small></span></a>
+        <a class="g-store" id="gApple" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10.5 18.5h3"/></svg>
+          <span><b>App Store</b><small data-i18n="getStoreSoon"></small></span></a>
+      </div>
       <div class="g-steps">
         <div class="g-step"><span class="g-step-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10.5 18.5h3"/></svg></span>
           <div><strong>iPhone · iPad</strong><p data-i18n="getIos"></p></div></div>
@@ -130,10 +139,10 @@
     <p data-copyright></p>
   </footer>
 
-  <script src="config.js?v=305"></script>
-  <script src="i18n-core.js?v=305"></script>
-  <script>document.write('<script src="lang/' + lang + '.js?v=305"><\/script>');</script>
-  <script src="vendor/qrcode.js?v=305"></script>
-  <script src="get.js?v=305"></script>
+  <script src="config.js?v=306"></script>
+  <script src="i18n-core.js?v=306"></script>
+  <script>document.write('<script src="lang/' + lang + '.js?v=306"><\/script>');</script>
+  <script src="vendor/qrcode.js?v=306"></script>
+  <script src="get.js?v=306"></script>
 </body>
 </html>

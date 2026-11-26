@@ -10,6 +10,7 @@
 // Loaded with the app (after app.js).
 
 const WHATS_NEW = [
+  { v: "306", date: "2026-11-25", items: ["wn306a"] },
   { v: "269", date: "2026-11-21", items: ["wn269a", "wn269b"] },
   { v: "255", date: "2026-11-20", items: ["wn255a", "wn255b"] },
   { v: "244", date: "2026-11-20", items: ["wn244a", "wn241a", "wn232a", "wn230a", "wn230b", "wn230c", "wn235a", "wn236a"] },

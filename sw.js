@@ -72,7 +72,7 @@ self.addEventListener("push", (event) => {
       icon: "icons/icon-192.png",
       badge: "icons/badge-72.png",
       vibrate: [300, 150, 300, 150, 300],
-      data: { url: self.registration.scope },
+      data: { url: self.registration.scope + "#app" }, // the app, not the website
     });
   })());
 });
