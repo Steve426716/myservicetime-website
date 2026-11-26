@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyServiceTime</title>
+  <link rel="icon" type="image/svg+xml" href="icons/logo.svg" />
+  <!-- Where the website's secure Stripe page sends people who paid from the MyServiceTime phone app (US):
+       "Thank you", then back to the app (myservicetime://paid), which unlocks by itself. -->
+  <script src="theme.js?v=305"></script>
+  <link rel="stylesheet" href="legal.css?v=305" />
+  <script src="i18n-core.js?v=305"></script>
+  <script>document.write('<script src="lang/' + lang + '.js?v=305"><\/script>');</script>
+  <style>
+    .paid { max-width: 440px; margin: 12vh auto 0; text-align: center; }
+    .paid img { width: 72px; height: 72px; }
+    .paid h1 { margin: 18px 0 10px; }
+    .paid p { line-height: 1.55; }
+    .paid a.back { display: inline-block; margin-top: 18px; padding: 14px 26px; border-radius: 14px; color: #fff; font-weight: 700;
+      text-decoration: none; background: linear-gradient(135deg, #2563eb, #7c3aed); }
+  </style>
+</head>
+<body>
+  <main>
+    <article class="legal-card paid">
+      <img src="icons/logo.svg?v=305" alt="" />
+      <h1 id="pdTitle"></h1>
+      <p id="pdText"></p>
+      <a class="back" id="pdBack" href="myservicetime://paid"></a>
+    </article>
+  </main>
+  <script>
+    const ok = new URLSearchParams(location.search).get("checkout") !== "cancel";
+    document.getElementById("pdTitle").textContent = ok ? t("paidTitle") : "MyServiceTime";
+    document.getElementById("pdText").textContent = t(ok ? "paidText" : "paidCancel");
+    document.getElementById("pdBack").textContent = t("paidBack");
+    document.documentElement.dir = LANGS[lang]?.dir || "ltr";
+  </script>
+</body>
+</html>

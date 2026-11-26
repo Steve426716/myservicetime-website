@@ -1,0 +1,37 @@
+/* Privacy Policy and Terms of Service pages */
+:root { --text: #1f2937; --muted: #6b7280; --accent: #5b4bf0; --grad: linear-gradient(135deg, #7c3aed, #3b82f6); }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--text); background: #f7f7fc; line-height: 1.6; }
+.legal-top { background: var(--grad); color: #fff; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.legal-top a { color: #fff; text-decoration: none; font-weight: 600; }
+.legal-brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 700 !important; font-size: 1rem; }
+.legal-brand img { border-radius: 8px; box-shadow: 0 0 0 2px rgba(255, 255, 255, .35); }
+.legal-top nav { display: flex; gap: 16px; font-size: .9rem; }
+.legal-top nav a { font-weight: 500; opacity: .9; }
+.legal-top nav a[aria-current] { opacity: 1; text-decoration: underline; }
+main { max-width: 760px; margin: 0 auto; padding: 28px 20px 60px; }
+.legal-card { background: #fff; border-radius: 16px; padding: 28px 30px; box-shadow: 0 2px 14px rgba(60, 50, 160, .08); }
+h1 { margin: 0 0 4px; font-size: 2rem; }
+h2 { margin: 28px 0 8px; font-size: 1.15rem; color: var(--accent); }
+.updated { color: var(--muted); margin: 0 0 18px; font-size: .9rem; }
+.summary { background: #eef2ff; border-radius: 12px; padding: 12px 16px; margin: 0 0 8px; }
+ul { padding-left: 22px; }
+li { margin: 4px 0; }
+a { color: var(--accent); }
+.missing { background: #fef3c7; color: #92400e; border-radius: 4px; padding: 0 4px; font-weight: 600; }
+.lang-note { color: var(--muted); font-size: .9rem; margin-top: 26px; }
+footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 0 20px 30px; }
+@media (max-width: 520px) { .legal-card { padding: 20px 18px; } h1 { font-size: 1.4rem; } }
+
+/* dark look (same choice as the app: theme.js) */
+[data-theme="dark"] { color-scheme: dark; }
+[data-theme="dark"] body { background: #12112a; color: #ecebff; }
+[data-theme="dark"] .legal-top { background: linear-gradient(120deg, #1e3a8a, #4c1d95); }
+[data-theme="dark"] .legal-card { background: #1c1b30; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); }
+[data-theme="dark"] h2, [data-theme="dark"] a { color: #a5b4fc; }
+[data-theme="dark"] .summary { background: #2b2750; }
+[data-theme="dark"] .updated, [data-theme="dark"] .lang-note, [data-theme="dark"] footer { color: #9b98bf; }
+[data-theme="dark"] .missing { background: #3a2e12; color: #fcd34d; }
+[data-theme="dark"] .legal-top a { color: #fff; }
+/* the top bar: the same solid dark navy as the app */
+.legal-top, [data-theme="dark"] .legal-top { background: #101b3f; }

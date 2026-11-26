@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- MyServiceTime — © 2026 the MyServiceTime owner. All rights reserved. See COPYRIGHT.txt -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyServiceTime</title>
+  <meta name="description" content="Appointments, visits and alarm reminders — with a time tracker, notes, contacts and GPS. Private and encrypted, in 20 languages." />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1b1938" />
+  <link rel="icon" type="image/svg+xml" href="icons/logo.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <!-- iPhone / iPad: "Add to Home Screen" (needed there for reminders when the app is closed) -->
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="MyServiceTime" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <!-- link previews (WhatsApp, Facebook, Messages…) -->
+  <meta property="og:title" content="MyServiceTime — your day, on time" />
+  <meta property="og:description" content="Appointments, visits and alarm reminders. Private, encrypted, in your language." />
+  <meta property="og:image" content="icons/icon-512.png" />
+  <!-- light / dark look: set before the page draws, so it never flashes the wrong colors -->
+  <script src="theme.js?v=305"></script>
+  <link rel="stylesheet" href="styles.css?v=305" />
+  <link rel="stylesheet" href="icons.css?v=305" />
+</head>
+<body class="locked">
+  <!-- ================= Public home page (seen before signing in) ================= -->
+  <div id="landing" class="landing">
+    <nav class="l-nav">
+      <a class="l-brand" href="#top"><img class="logo" src="icons/logo.svg?v=305" alt="" /> MyServiceTime</a>
+      <div class="l-nav-links">
+        <a href="#features" data-i18n="navFeatures"></a>
+        <a href="#pricing" data-i18n="navPricing"></a>
+        <a href="#faq" data-i18n="navFaq"></a>
+        <a href="get.html" data-i18n="getNav"></a>
+      </div>
+      <div class="l-nav-actions">
+        <button type="button" class="theme-btn" data-theme-toggle data-i18n-title="themeToggle" aria-label="Light / dark">🌙</button>
+        <label class="lang-pick l-lang" data-i18n-title="langLabel">🌐 <select id="authLang" aria-label="Language"></select></label>
+        <button type="button" class="btn l-ghost" data-open="signin" data-i18n="signIn"></button>
+        <button type="button" class="btn btn-start" data-open="choose" data-i18n="navStart"></button>
+      </div>
+    </nav>
+
+    <header class="l-hero" id="top">
+      <div class="l-hero-text">
+        <span class="l-kicker" data-i18n="heroKicker"></span>
+        <h1 data-i18n="heroTitle"></h1>
+        <p class="l-sub" data-i18n="heroSub"></p>
+        <div class="l-hero-btns">
+          <button type="button" class="btn btn-start big" data-open="choose" data-i18n="heroCta"></button>
+          <button type="button" class="btn l-ghost big" data-open="signin" data-i18n="heroSecondary"></button>
+        </div>
+      </div>
+
+      <!-- a small picture of the app, with a few floating details, and "Get the app" under it -->
+      <div class="l-art">
+      <div class="l-mock" aria-hidden="true">
+        <div class="l-glow"></div>
+        <div class="m-phone">
+          <div class="m-top"><span class="m-brand"><img class="m-logo" src="icons/logo.svg?v=305" alt="" /> MyServiceTime</span><span>☁️</span></div>
+          <div class="m-alarm"><span class="m-bell">🔔</span> <span data-i18n="mockAlarm"></span></div>
+          <div class="m-card m-tracker">
+            <span data-i18n="mockTracker"></span>
+            <strong>01:24:09</strong>
+          </div>
+          <div class="m-card m-appt">
+            <strong data-i18n="mockAppt1"></strong>
+            <span data-i18n="mockAppt1Meta"></span>
+            <span class="m-link">📍 <span data-i18n="mockAddr"></span></span>
+          </div>
+          <div class="m-card m-appt visit">
+            <strong data-i18n="mockAppt2"></strong>
+            <span data-i18n="mockAppt2Meta"></span>
+          </div>
+          <div class="m-card m-contact">
+            <span>👤 Marie J.</span>
+            <span class="m-pills"><i>📞</i><i>💬</i><i>🧭</i></span>
+          </div>
+        </div>
+        <div class="l-float l-float-a"><span>⏱</span><b>2h 05m</b></div>
+        <div class="l-float l-float-b"><span>✅</span><b>3 / 4</b></div>
+        <div class="l-float l-float-c"><span>🔥</span><b>6</b></div>
+      </div>
+      <a class="l-getapp" href="get.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10.5 18.5h3"/></svg><span data-i18n="getNav"></span><span class="l-getapp-go" aria-hidden="true">›</span></a>
+      </div>
+    </header>
+
+    <!-- why people can trust it, in four short points -->
+    <section class="l-trust">
+      <div><span class="l-trust-ic">🔒</span><b data-i18n="trust1"></b></div>
+      <div><span class="l-trust-ic">🌐</span><b data-i18n="trust2"></b></div>
+      <div><span class="l-trust-ic">📱</span><b data-i18n="trust3"></b></div>
+      <div><span class="l-trust-ic">🎁</span><b data-i18n="trust4"></b></div>
+    </section>
+
+    <section class="l-section" id="features">
+      <p class="l-eyebrow" data-i18n="navFeatures"></p>
+      <h2 class="l-h2" data-i18n="featuresTitle"></h2>
+      <div class="l-features">
+        <article><h3 data-i18n="f1t" data-split-icon></h3><p data-i18n="f1d"></p></article>
+        <article><h3 data-i18n="f2t" data-split-icon></h3><p data-i18n="f2d"></p></article>
+        <article><h3 data-i18n="f3t" data-split-icon></h3><p data-i18n="f3d"></p></article>
+        <article><h3 data-i18n="f10t" data-split-icon></h3><p data-i18n="f10d"></p></article>
+        <article><h3 data-i18n="f11t" data-split-icon></h3><p data-i18n="f11d"></p></article>
+        <article><h3 data-i18n="f7t" data-split-icon></h3><p data-i18n="f7d"></p></article>
+        <article><h3 data-i18n="f4t" data-split-icon></h3><p data-i18n="f4d"></p></article>
+        <article><h3 data-i18n="f5t" data-split-icon></h3><p data-i18n="f5d"></p></article>
+        <article><h3 data-i18n="f6t" data-split-icon></h3><p data-i18n="f6d"></p></article>
+        <article><h3 data-i18n="f8t" data-split-icon></h3><p data-i18n="f8d"></p></article>
+        <article><h3 data-i18n="f9t" data-split-icon></h3><p data-i18n="f9d"></p></article>
+        <article><h3 data-i18n="f12t" data-split-icon></h3><p data-i18n="f12d"></p></article>
+      </div>
+    </section>
+
+    <section class="l-section" id="who">
+      <p class="l-eyebrow" data-i18n="whoEyebrow"></p>
+      <h2 class="l-h2" data-i18n="whoTitle"></h2>
+      <div class="l-who">
+        <article><h3 data-i18n="who1t" data-split-icon></h3><p data-i18n="who1d"></p></article>
+        <article><h3 data-i18n="who2t" data-split-icon></h3><p data-i18n="who2d"></p></article>
+        <article><h3 data-i18n="who3t" data-split-icon></h3><p data-i18n="who3d"></p></article>
+        <article><h3 data-i18n="who4t" data-split-icon></h3><p data-i18n="who4d"></p></article>
+      </div>
+    </section>
+
+    <section class="l-section l-privacy">
+      <div>
+        <h2 class="l-h2" data-i18n="privacyTitle"></h2>
+        <p data-i18n="privacyText"></p>
+      </div>
+      <ul class="l-points">
+        <li data-i18n="p1"></li>
+        <li data-i18n="p2"></li>
+        <li data-i18n="p3"></li>
+        <li data-i18n="p4"></li>
+      </ul>
+    </section>
+
+    <section class="l-section">
+      <h2 class="l-h2" data-i18n="stepsTitle"></h2>
+      <ol class="l-steps">
+        <li><span class="l-num">1</span><p data-i18n="s1"></p></li>
+        <li><span class="l-num">2</span><p data-i18n="s2"></p></li>
+        <li><span class="l-num">3</span><p data-i18n="s3"></p></li>
+      </ol>
+    </section>
+
+    <section class="l-section" id="pricing">
+      <p class="l-eyebrow" data-i18n="navPricing"></p>
+      <h2 class="l-h2" data-i18n="priceTitle"></h2>
+      <div class="price-cards">
+      <div class="price-card free-card">
+        <h3 class="price-name" data-i18n="freeTitle"></h3>
+        <div class="price-big"><span data-i18n="freePrice"></span></div>
+        <p class="price-local">&nbsp;</p>
+        <ul class="price-list">
+          <li data-i18n="freeInc1"></li>
+          <li data-i18n="freeInc2"></li>
+          <li data-i18n="freeInc3"></li>
+        </ul>
+        <button type="button" class="btn btn-start big" data-open="choose" data-i18n="navStart"></button>
+      </div>
+      <div class="price-card price-block">
+        <h3 class="price-name" data-i18n="siteSupTitle"></h3>
+        <div class="price-big"><span class="pp-amount"></span> <span class="pp-per"></span></div>
+        <p class="price-equiv"></p>
+        <p class="price-local"></p>
+        <ul class="price-list">
+          <li data-i18n="inc1"></li>
+          <li data-i18n="inc2"></li>
+          <li data-i18n="inc3"></li>
+          <li data-i18n="inc5"></li>
+          <li data-i18n="inc4"></li>
+        </ul>
+        <p class="muted small-text" data-i18n="siteSupHow"></p>
+        <button type="button" class="btn btn-primary big" data-open="choose" data-i18n="homeSupTitle"></button>
+      </div>
+      </div>
+      <p class="muted small-text price-note-all" data-i18n="priceNote"></p>
+    </section>
+
+    <section class="l-section" id="faq">
+      <p class="l-eyebrow" data-i18n="navFaq"></p>
+      <h2 class="l-h2" data-i18n="faqTitle"></h2>
+      <div class="l-faq">
+        <details><summary data-i18n="q1"></summary><p data-i18n="a1"></p></details>
+        <details><summary data-i18n="q2"></summary><p data-i18n="a2"></p></details>
+        <details><summary data-i18n="q3"></summary><p data-i18n="a3"></p></details>
+        <details><summary data-i18n="q4"></summary><p data-i18n="a4"></p></details>
+        <details><summary data-i18n="q5"></summary><p data-i18n="a5"></p></details>
+      </div>
+    </section>
+
+    <section class="l-cta">
+      <h2 data-i18n="ctaTitle"></h2>
+      <p class="l-cta-sub" data-i18n="ctaSub"></p>
+      <button type="button" class="btn btn-start big" data-open="choose" data-i18n="heroCta"></button>
+    </section>
+
+    <footer class="l-footer">
+      <div class="l-footer-brand"><img class="logo" src="icons/logo.svg?v=305" alt="" /> <b>MyServiceTime</b></div>
+      <p class="l-footer-links">
+        <a href="#features" data-i18n="navFeatures"></a> · <a href="#pricing" data-i18n="navPricing"></a> · <a href="#faq" data-i18n="navFaq"></a> · <a href="get.html" data-i18n="getNav"></a>
+      </p>
+      <span data-i18n="footer"></span>
+      <p class="legal-links"><a href="privacy.html" target="_blank" rel="noopener" data-i18n="legalPrivacy"></a> · <a href="terms.html" target="_blank" rel="noopener" data-i18n="legalTerms"></a><span data-support-wrap> · <a data-support data-i18n="legalSupport"></a></span></p>
+      <p class="copyright" data-copyright></p>
+    </footer>
+  </div>
+
+  <!-- ================= Sign in / create account (opens over the home page) ================= -->
+  <div id="authScreen" class="auth" hidden>
+    <form class="auth-card" id="authForm" autocomplete="on">
+      <div class="auth-top">
+        <img class="logo" src="icons/logo.svg?v=305" alt="" />
+        <button type="button" class="auth-close" id="authClose" data-i18n-title="close">✕</button>
+      </div>
+      <p class="auth-welcome" data-i18n="welcome"></p>
+      <h2 id="authTitle"></h2>
+      <p class="muted small-text" data-modes="signin signup forgot choose">🔒 <span data-i18n="authPrivacy"></span></p>
+      <div class="auth-choose" data-modes="choose">
+        <button type="button" class="choose-btn" id="chooseYes">
+          <span class="choose-ic">🔑</span>
+          <span class="choose-txt"><strong data-i18n="chooseYes"></strong><span data-i18n="chooseYesSub"></span></span>
+          <span class="choose-chev" aria-hidden="true">›</span>
+        </button>
+        <button type="button" class="choose-btn primary paid-only" id="chooseNo" hidden><!-- not offered here: the Cloud starts from "Become a Supporter" -->
+          <span class="choose-ic">✨</span>
+          <span class="choose-txt"><strong data-i18n="chooseNo"></strong><span data-i18n="chooseNoSub"></span></span>
+          <span class="choose-chev" aria-hidden="true">›</span>
+        </button>
+        <button type="button" class="choose-btn" id="chooseLocal">
+          <span class="choose-ic">📱</span>
+          <span class="choose-txt"><strong data-i18n="chooseLocal"></strong><span data-i18n="chooseLocalSub"></span></span>
+          <span class="choose-chev" aria-hidden="true">›</span>
+        </button>
+      </div>
+      <p class="muted small-text" data-modes="unlock" id="unlockHint"></p>
+
+      <label data-modes="signup"><span data-i18n="yourName"></span>
+        <input type="text" id="aName" autocomplete="name" />
+      </label>
+      <label data-modes="signup"><span data-i18n="countryLabel"></span>
+        <select id="aCountry" autocomplete="country"></select>
+        <span class="muted small-text" data-i18n="countryWhy"></span>
+      </label>
+      <label data-modes="signin signup forgot"><span id="aEmailLabel" data-i18n="emailLogin"></span>
+        <input type="email" id="aEmail" autocomplete="email" autocapitalize="none" spellcheck="false" />
+      </label>
+      <label data-modes="signin signup unlock recover oldpw"><span id="aPwLabel"></span>
+        <input type="password" id="aPassword" />
+      </label>
+      <label data-modes="signup recover"><span data-i18n="confirmPassword"></span>
+        <input type="password" id="aConfirm" autocomplete="new-password" />
+      </label>
+      <label class="check" data-modes="signin signup unlock recover oldpw"><input type="checkbox" id="aKeep" /> <span data-i18n="keepSignedIn"></span></label>
+      <p class="muted small-text" data-modes="signup">⚠️ <span data-i18n="pwWarning"></span></p>
+      <p class="muted small-text legal-agree" data-modes="signup"><span data-i18n="agreeTerms"></span> <a href="terms.html" target="_blank" rel="noopener" data-i18n="legalTerms"></a> · <a href="privacy.html" target="_blank" rel="noopener" data-i18n="legalPrivacy"></a></p>
+      <p class="addr-msg" id="authMsg"></p>
+      <button type="submit" class="btn btn-primary auth-submit" id="authSubmit"></button>
+      <button type="button" class="link-btn" id="forgotLink" data-modes="signin" data-i18n="forgotPw"></button>
+      <button type="button" class="link-btn danger-text" id="startOverBtn" data-modes="oldpw" data-i18n="startOver"></button>
+      <button type="button" class="link-btn" id="authSwitch"></button>
+      <button type="button" class="link-btn auth-back" id="authBack" data-modes="signin signup" data-i18n="chooseBack"></button>
+    </form>
+  </div>
+
+  <!-- ================= Subscribe page (signed in, but no active subscription) ================= -->
+  <div id="paywall" class="auth" hidden>
+    <div class="auth-card paywall-card">
+      <div class="auth-top"><img class="logo" src="icons/logo.svg?v=305" alt="" /><span class="muted" id="pwHello"></span></div>
+      <h2 id="pwTitle" data-i18n="paywallTitle"></h2>
+      <div id="pwSupport" class="pw-support paid-only"></div>
+            <div class="price-block paid-only">
+        <div class="plan-toggle" role="group">
+          <button type="button" data-plan="monthly" data-i18n="planMonthly"></button>
+          <button type="button" data-plan="yearly"><span data-i18n="planYearly"></span> <span class="save" data-i18n="save15"></span></button>
+        </div>
+        <div class="price-big"><span class="pp-amount"></span> <span class="pp-per"></span></div>
+        <p class="price-equiv"></p>
+        <p class="price-local"></p>
+      </div>
+      <ul class="price-list paid-only">
+        <li data-i18n="inc1"></li>
+        <li data-i18n="inc2"></li>
+        <li data-i18n="inc3"></li>
+        <li data-i18n="inc5"></li>
+          <li data-i18n="inc4"></li>
+      </ul>
+      <p class="addr-msg" id="pwPayMsg"></p>
+      <button type="button" class="btn btn-primary auth-submit paid-only" id="pwSubscribe"></button>
+      <button type="button" class="btn btn-ghost auth-submit" id="pwLocal" hidden>📱 <span data-i18n="cloudOffLocal"></span></button>
+      <p class="muted small-text pay-note paid-only" data-i18n="securePay"></p>
+      <button type="button" class="link-btn" id="pwLater" data-i18n="notNow" hidden></button>
+      <button type="button" class="link-btn" id="pwSignOut" data-i18n="signOut"></button>
+      <p class="legal-links small-text"><a href="privacy.html" target="_blank" rel="noopener" data-i18n="legalPrivacy"></a> · <a href="terms.html" target="_blank" rel="noopener" data-i18n="legalTerms"></a><span data-support-wrap> · <a data-support data-i18n="legalSupport"></a></span></p>
+    </div>
+  </div>
+
+  <!-- Settings → Security: its own window (opened from the "Security" row; lock.js) -->
+  <div id="secModal" class="sp-overlay wn-overlay" hidden>
+    <div class="sp-sheet sec-sheet" role="dialog" aria-modal="true" aria-labelledby="setSecurityHead">
+      <button type="button" class="icon-btn sp-close" id="secClose" data-i18n-title="close" aria-label="Close">✕</button>
+      <div class="sec-head"><span class="hub-ic" data-ic="🔒">🔒</span><h2 id="setSecurityHead" data-i18n="secTitle"></h2></div>
+      
+      <div id="setSecurity">
+        <div class="set-row">
+          <div><strong data-i18n="alSet"></strong><p class="muted small-text" data-i18n="alSetHint"></p></div>
+          <label class="check"><input type="checkbox" id="alOn" /> <span data-i18n="alOnLabel"></span></label>
+        </div>
+        <div class="sec-block" id="alMethodRow" hidden>
+          <strong data-i18n="alMethod"></strong>
+          <div id="alMethods"></div>
+          <p class="muted small-text" id="alBioHint" hidden></p>
+          <div id="alBioSetupWrap"></div>
+        </div>
+        <div class="set-row" id="alAfterRow" hidden>
+          <div><strong data-i18n="alAfter"></strong></div>
+          <select id="alAfter">
+            <option value="0" data-i18n="alAfter0"></option>
+            <option value="60" data-i18n="alAfter1"></option>
+            <option value="300" data-i18n="alAfter5"></option>
+            <option value="900" data-i18n="alAfter15"></option>
+          </select>
+        </div>
+        <div class="set-row" id="alChangeRow" hidden>
+          <div><strong data-i18n="alChange"></strong></div>
+          <button type="button" class="btn btn-ghost" id="alChange" data-i18n="alChangeBtn"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔔 Notifications (notices.js): the list that opens from the bell at the top -->
+  <div id="ntWrap" class="nt-wrap" hidden><div id="ntPanel" class="nt-panel" role="dialog" aria-labelledby="ntTitleH" tabindex="-1"></div></div>
+
+  <!-- "Changed on another device" -->
+  <button type="button" id="remoteBanner" class="remote-banner" data-i18n="updatedElsewhere" hidden></button>
+
+  <header class="topbar">
+    <div class="brand">
+      <button type="button" class="menu-btn" id="menuBtn" aria-controls="drawer" aria-expanded="false" data-i18n-title="menuBtn" aria-label="Menu"><svg class="ic-bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg><svg class="ic-panel" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><path d="M9.5 4.5v15M14.5 10l-2 2 2 2"/></svg></button>
+      <img class="logo" src="icons/logo.svg?v=305" alt="" />
+      <div>
+        <h1>MyServiceTime</h1>
+        <p class="clock" id="clock"></p>
+      </div>
+      <button type="button" class="bell-btn" id="bellBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="ntWrap" data-i18n-title="ntTitle" aria-label="Notifications"><span class="bell-ic" data-ic="✨">✨</span><span class="bell-count" hidden>0</span></button>
+    </div>
+    <div class="top-actions">
+      <label class="lang-pick" data-i18n-title="langLabel">
+        🌐 <select id="langSel" aria-label="Language"></select>
+      </label>
+      <button id="startBtn" class="btn btn-start"></button>
+      <button type="button" id="syncStatus" class="sync-pill"></button>
+      <button type="button" id="helpBtn" class="help-btn" data-i18n-title="helpBtn" aria-label="Help">?</button>
+      <button type="button" class="account-btn" id="acctName" data-view="profile"></button>
+    </div>
+  </header>
+
+
+  <!-- ☰ Side menu: every page, every tool, reminders, help and log out -->
+  <div id="drawer" class="drawer" hidden>
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <nav class="drawer-panel" id="drawerPanel" aria-label="Menu" tabindex="-1">
+      <div class="drawer-head">
+        <img class="logo" src="icons/logo.svg?v=305" alt="" />
+        <strong><span class="dh-full">MyServiceTime</span><span class="dh-short" aria-hidden="true">MST</span></strong>
+        <button type="button" class="auth-close" data-close-drawer data-i18n-title="close">✕</button>
+      </div>
+      <button type="button" class="drawer-user" data-dview="profile">
+        <span id="drawerAvatar"></span>
+        <span class="drawer-who"><strong id="drawerName"></strong><span class="muted" data-i18n="drViewProfile"></span></span>
+        <span class="drawer-chev" aria-hidden="true">›</span>
+      </button>
+
+      <p class="drawer-h" data-i18n="drPages"></p>
+      <ul class="drawer-list">
+        <li><button type="button" data-dview="dashboard"><span class="d-ic" data-ic="🏠">🏠</span><span data-i18n="navDashboard"></span></button></li>
+        <li><button type="button" data-dview="toolhub"><span class="d-ic" data-ic="🧰">🧰</span><span data-i18n="navTools"></span></button></li>
+        <li><button type="button" data-dview="activity"><span class="d-ic" data-ic="📈">📈</span><span data-i18n="navActivity"></span></button></li>
+        <li><button type="button" data-dview="progress"><span class="d-ic" data-ic="📊">📊</span><span data-i18n="navProgress"></span></button></li>
+        <li><button type="button" data-dview="settings"><span class="d-ic" data-ic="⚙️">⚙️</span><span data-i18n="navSettings"></span></button></li>
+      </ul>
+
+      <p class="drawer-h" data-i18n="drTools"></p>
+      <ul class="drawer-list">
+        <li><button type="button" data-djump=".tracker"><span class="d-ic" data-ic="⏱️">⏱️</span><span data-i18n="trackerTitle" data-strip-icon></span></button></li>
+        <li><button type="button" data-djump="#listCard"><span class="d-ic" data-ic="📅">📅</span><span data-i18n="actAppts"></span></button></li>
+        <li><button type="button" data-djump=".events-card"><span class="d-ic" data-ic="🗓️">🗓️</span><span data-i18n="events" data-strip-icon></span></button></li>
+        <li><button type="button" data-djump=".tasks-card"><span class="d-ic" data-ic="✅">✅</span><span data-i18n="assignments" data-strip-icon></span></button></li>
+        <li><button type="button" data-djump=".contacts"><span class="d-ic" data-ic="👥">👥</span><span data-i18n="contacts" data-strip-icon></span></button></li>
+        <li><button type="button" data-djump=".quicknotes"><span class="d-ic" data-ic="📝">📝</span><span data-i18n="quickNotes" data-strip-icon></span></button></li>
+        <li><button type="button" data-djump=".planner"><span class="d-ic" data-ic="📒">📒</span><span data-i18n="planner" data-strip-icon></span></button></li>
+        <li><button type="button" data-djump=".map-card"><span class="d-ic" data-ic="🗺️">🗺️</span><span data-i18n="mapTitle"></span></button></li>
+        <li><button type="button" data-djump=".territories-card"><span class="d-ic" data-ic="🏘️">🏘️</span><span data-i18n="trTitle"></span></button></li>
+      </ul>
+
+      <p class="drawer-h" data-i18n="drMore" hidden></p>
+      <ul class="drawer-list" hidden>
+        <li><button type="button" data-daction="reminders"><span class="d-ic" data-ic="🔔">🔔</span><span data-i18n="remTitle"></span></button></li>
+        <li><button type="button" data-dview="settings"><span class="d-ic" data-ic="⚙️">⚙️</span><span data-i18n="navSettings"></span></button></li>
+        <li><button type="button" data-daction="help"><span class="d-ic" data-ic="❓">❓</span><span data-i18n="helpBtn"></span></button></li>
+        <li><button type="button" data-daction="feedback"><span class="d-ic" data-ic="💬">💬</span><span data-i18n="fbMenu"></span></button></li>
+        <li><button type="button" data-daction="theme" class="theme-row" role="switch" id="drawerTheme"><span class="d-ic" data-ic="🌙">🌙</span><span data-i18n="drDark"></span><span class="switch" id="drawerThemeSwitch"></span></button></li>
+        <li class="local-only"><button type="button" data-daction="cloud"><span class="d-ic" data-ic="☁️">☁️</span><span data-i18n="cloudMenu"></span></button></li>
+        <li class="cloud-only"><button type="button" class="drawer-out" id="acctOut"><span class="d-ic" data-ic="🚪">🚪</span><span data-i18n="navLogout"></span></button></li>
+      </ul>
+
+      <div class="drawer-bottom">
+        <p class="legal-links small-text drawer-legal"><a href="privacy.html" target="_blank" rel="noopener" data-i18n="legalPrivacy"></a> · <a href="terms.html" target="_blank" rel="noopener" data-i18n="legalTerms"></a><span data-support-wrap> · <a data-support data-i18n="legalSupport"></a></span></p>
+        <p class="copyright drawer-copy" data-copyright></p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- messages about notifications (allow them / iPhone: add to Home Screen) -->
+  <p id="notifyHint" class="notify-hint" hidden></p>
+
+  <!-- free first week: "N days left — Subscribe" -->
+  <div id="trialBanner" class="trial-banner" hidden>
+    <span id="trialText"></span>
+    <button type="button" class="btn small btn-start" id="trialSubscribe" data-i18n="trialSubscribe"></button>
+  </div>
+
+  <!-- shown only in the demo -->
+  <div id="demoBanner" class="demo-banner" hidden>
+    <span data-i18n="demoBanner"></span>
+    <span class="demo-actions">
+      <button type="button" class="btn small btn-start" id="demoCreate" data-i18n="demoCreate"></button>
+      <button type="button" class="btn small l-ghost" id="demoExit" data-i18n="exitDemo"></button>
+    </span>
+  </div>
+
+  <!-- ================= Menu ================= -->
+  <nav class="app-nav" id="appNav" aria-label="Menu">
+    <button type="button" data-view="dashboard"><span class="nav-ic" data-ic="🏠">🏠</span><span data-i18n="navDashboard"></span></button>
+    <button type="button" data-view="toolhub"><span class="nav-ic" data-ic="🧰">🧰</span><span data-i18n="navTools"></span></button>
+    <button type="button" data-view="activity"><span class="nav-ic" data-ic="📈">📈</span><span data-i18n="navActivity"></span></button>
+    <button type="button" data-view="progress"><span class="nav-ic" data-ic="📊">📊</span><span data-i18n="navProgress"></span></button>
+    <button type="button" id="navSearch"><span class="nav-ic" data-ic="🔍">🔍</span><span data-i18n="mapSearchBtn"></span></button>
+    <button type="button" data-view="settings"><span class="nav-ic" data-ic="⚙️">⚙️</span><span data-i18n="navSettings"></span></button>
+  </nav>
+
+  <!-- ================= Dashboard ================= -->
+  <section class="page" data-page="dashboard" hidden>
+    <div class="dash-hello">
+      <span id="dashAvatar"></span>
+      <div>
+        <h2 id="dashGreeting"></h2>
+        <p class="muted" id="dashDate"></p>
+      </div>
+    </div>
+    <div class="dash-stats" id="dashStats"></div>
+    <div class="card wx-card" id="dashWeather" hidden></div>
+    <div class="card goal-card" id="dashGoal" hidden><h2 data-icon="🎯" data-i18n="pubGoalTitle"></h2><div class="goal-box"></div></div>
+    <!-- Become a Supporter: under the monthly hours goal, above Next up -->
+    <button type="button" class="home-sup" id="homeSup" hidden>
+      <span class="home-sup-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>
+      <span class="home-sup-txt"><strong data-i18n="homeSupTitle"></strong><span data-i18n="homeSupText"></span></span>
+      <span class="home-sup-go" aria-hidden="true">›</span>
+    </button>
+    <div class="dash-grid">
+      <div class="card">
+        <div class="list-head"><h2 data-i18n="dashNextUp"></h2></div>
+        <ul class="dash-list" id="dashNext"></ul>
+      </div>
+      <div class="card dash-tracker" id="dashTracker"></div>
+      <div class="card">
+        <h2 data-i18n="dashQuick"></h2>
+        <div class="dash-quick">
+          <button type="button" class="btn btn-ghost" data-go="appt"><span class="qa-ic" data-ic="📅">📅</span> <span data-i18n="qaAppt"></span></button>
+          <button type="button" class="btn btn-ghost" data-go="task"><span class="qa-ic" data-ic="📋">📋</span> <span data-i18n="qaTask"></span></button>
+          <button type="button" class="btn btn-ghost" data-go="event"><span class="qa-ic" data-ic="🗓️">🗓️</span> <span data-i18n="qaEvent"></span></button>
+          <button type="button" class="btn btn-ghost" data-go="todo"><span class="qa-ic" data-ic="☑️">☑️</span> <span data-i18n="qaTodo"></span></button>
+          <button type="button" class="btn btn-ghost" data-go="contact"><span class="qa-ic" data-ic="👤">👤</span> <span data-i18n="qaContact"></span></button>
+          <button type="button" class="btn btn-ghost" data-go="note"><span class="qa-ic" data-ic="📝">📝</span> <span data-i18n="qaNote"></span></button>
+          <button type="button" class="btn btn-ghost qa-sync" data-go="sync"><span class="qa-ic" data-ic="🔄">🔄</span> <span data-i18n="qaSync"></span>
+            <span class="qa-sync-tag"><span class="tag-ic" data-ic="☁️">☁️</span><span data-i18n="qaSyncTag"></span></span></button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="list-head"><h2 data-i18n="dashWeekTime"></h2><span class="muted dash-week-total" id="dashWeekTotal"></span></div>
+        <div class="dash-bars" id="dashBars"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Tools: every tool + search ================= -->
+  <section class="page narrow" data-page="toolhub" hidden>
+    <div class="card hub-card">
+      <h2 id="hubTitle" data-icon="🧰" data-i18n="navTools"></h2>
+      <form class="map-search hub-search" id="hubForm" role="search">
+        <input type="search" id="hubSearch" data-i18n-ph="hubSearchPh" enterkeyhint="search" autocomplete="off" />
+        <button type="submit" class="btn btn-primary map-search-btn"><span aria-hidden="true">🔍</span> <span data-i18n="mapSearchBtn"></span></button>
+      </form>
+      <p class="hub-h" id="hubFoundHead" data-i18n="hubFound" hidden></p>
+      <ul class="hub-list" id="hubFound"></ul>
+      <p class="muted hub-none" id="hubNone" data-i18n="noMatch" hidden></p>
+      <p class="hub-h" id="hubToolsHead" data-i18n="drTools"></p>
+      <ul class="hub-list" id="hubTools"></ul>
+    </div>
+  </section>
+
+  <!-- ================= More (the ⚙️ Settings button in the top bar) ================= -->
+  <section class="page narrow" data-page="more" hidden>
+    <div class="card hub-card">
+      <h2 data-icon="⚙️" data-i18n="drMore"></h2>
+      <ul class="hub-list" id="moreList">
+        <li><button type="button" class="hub-tool" data-more="reminders"><span class="hub-ic" data-ic="🔔">🔔</span><span class="hub-name" data-i18n="remTitle"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+<li><button type="button" class="hub-tool sync-row" data-more="sync"><span class="hub-ic" data-ic="🔄">🔄</span><span class="hub-name" data-i18n="qaSync"></span><span class="sync-tag"><span class="tag-ic" data-ic="☁️">☁️</span><span data-i18n="qaSyncTag"></span></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="settings"><span class="hub-ic" data-ic="⚙️">⚙️</span><span class="hub-name" data-i18n="navSettings"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="help"><span class="hub-ic" data-ic="❓">❓</span><span class="hub-name" data-i18n="helpBtn"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="feedback"><span class="hub-ic" data-ic="💬">💬</span><span class="hub-name" data-i18n="fbMenu"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="shareapp"><span class="hub-ic" data-ic="📤">📤</span><span class="hub-name" data-i18n="shareMenu"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="theme" role="switch" id="moreTheme"><span class="hub-ic" data-ic="🌙">🌙</span><span class="hub-name" data-i18n="drDark"></span><span class="switch" id="moreThemeSwitch"></span></button></li>
+        <li class="local-only"><button type="button" class="hub-tool" data-more="cloud"><span class="hub-ic" data-ic="☁️">☁️</span><span class="hub-name" data-i18n="cloudMenu"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li class="cloud-only"><button type="button" class="hub-tool more-out" data-more="logout"><span class="hub-ic" data-ic="🚪">🚪</span><span class="hub-name" data-i18n="navLogout"></span></button></li>
+      </ul>
+    </div>
+  </section>
+
+  <main class="layout page" data-page="tools" hidden>
+    <!-- tool tabs: inside a tool, shows every tool with the one you're in marked (tap another to switch) -->
+    <nav class="tools-bar" id="toolsBar" aria-label="Sections">
+      <button type="button" data-jump=".tracker"><span class="tb-ic" data-ic="⏱️">⏱️</span> <span data-i18n="trackerTitle" data-strip-icon></span></button>
+      <button type="button" data-jump="#listCard"><span class="tb-ic" data-ic="📅">📅</span> <span data-i18n="actAppts"></span></button>
+      <button type="button" data-jump=".events-card"><span class="tb-ic" data-ic="🗓️">🗓️</span> <span data-i18n="events" data-strip-icon></span></button>
+      <button type="button" data-jump=".tasks-card"><span class="tb-ic" data-ic="✅">✅</span> <span data-i18n="assignments" data-strip-icon></span></button>
+      <button type="button" data-jump=".contacts"><span class="tb-ic" data-ic="👤">👤</span> <span data-i18n="contacts" data-strip-icon></span></button>
+      <button type="button" data-jump=".quicknotes"><span class="tb-ic" data-ic="📝">📝</span> <span data-i18n="quickNotes" data-strip-icon></span></button>
+      <button type="button" data-jump=".planner"><span class="tb-ic" data-ic="📒">📒</span> <span data-i18n="planner" data-strip-icon></span></button>
+      <button type="button" data-jump=".map-card"><span class="tb-ic" data-ic="🗺️">🗺️</span> <span data-i18n="mapTitle"></span></button>
+      <button type="button" data-jump=".territories-card"><span class="tb-ic" data-ic="🏘️">🏘️</span> <span data-i18n="trTitle"></span></button>
+    </nav>
+    <!-- Time tracker -->
+    <section class="card tracker">
+      <div class="tracker-main">
+        <div class="tracker-left">
+          <div class="trk-head"><h2 data-i18n="trackerTitle"></h2><span id="trkWx"></span></div>
+          <label class="trk-label"><span data-i18n="purpose"></span>
+            <input type="text" id="trkName" list="trkNames" data-i18n-ph="trkPh" maxlength="80" />
+          </label>
+          <datalist id="trkNames"></datalist>
+          <label class="trk-label"><span data-i18n="noteOptional"></span>
+            <input type="text" id="trkNote" data-i18n-ph="sessionNotePh" maxlength="300" />
+          </label>
+        </div>
+        <div class="tracker-clock" id="trkClock">00:00:00</div>
+        <div class="tracker-btns">
+          <button class="btn btn-primary big" id="trkStart" data-i18n="start"></button>
+          <button class="btn btn-ghost big" id="trkPause" hidden></button>
+          <button class="btn stop big" id="trkStop" data-i18n="stop" hidden></button>
+        </div>
+      </div>
+      <p class="tracker-status" id="trkStatus"></p>
+      <div class="trk-goal" id="trGoal" hidden><div class="goal-box"></div></div>
+
+      <div class="tracker-summary">
+        <div class="list-head">
+          <h3 data-i18n="timeSpent"></h3>
+          <select id="trkRange">
+            <option value="today" data-i18n="today"></option>
+            <option value="week" data-i18n="last7"></option>
+            <option value="all" data-i18n="allTime"></option>
+          </select>
+          <span class="muted" id="trkTotal"></span>
+        </div>
+        <ul class="totals" id="trkTotals"></ul>
+        <details>
+          <summary data-i18n="history"></summary>
+          <ul class="history" id="trkHistory"></ul>
+        </details>
+      </div>
+
+      <!-- Time calendar: tracked time per day, with purposes and notes -->
+      <div class="tcal">
+        <div class="list-head">
+          <!-- the calendar icon opens a month / year picker -->
+          <button type="button" class="tcal-pick-btn" id="tcalPickBtn" aria-haspopup="true" aria-expanded="false" aria-controls="tcalPicker" data-i18n-title="tcalPick">📆</button>
+          <h3 data-i18n="timeCalendar" data-strip-icon></h3>
+          <span class="spacer"></span>
+          <span class="muted tcal-total" id="tcalTotal"></span>
+        </div>
+        <div class="tcal-picker" id="tcalPicker" hidden>
+          <div class="tcal-picker-year">
+            <button type="button" class="btn small btn-ghost" id="tpPrevYear" aria-label="◀">◀</button>
+            <strong id="tpYear"></strong>
+            <button type="button" class="btn small btn-ghost" id="tpNextYear" aria-label="▶">▶</button>
+          </div>
+          <div class="tcal-picker-months" id="tpMonths"></div>
+        </div>
+        <div class="pl-nav">
+          <button type="button" class="btn small btn-ghost" id="tcalPrev" aria-label="◀">◀</button>
+          <button type="button" class="btn small btn-ghost" id="tcalToday" data-i18n="today"></button>
+          <button type="button" class="btn small btn-ghost" id="tcalNext" aria-label="▶">▶</button>
+          <button type="button" class="pl-title tcal-title-btn" id="tcalTitle" aria-controls="tcalPicker" data-i18n-title="tcalPick"></button>
+        </div>
+        <p class="pl-saved" id="tcalSaved" hidden></p>
+        <div class="tcal-grid" id="tcalGrid"></div>
+        <div class="tcal-day" id="tcalDay" hidden>
+          <div class="tcal-day-top">
+            <div class="tcal-day-head" id="tcalDayHead"></div>
+            <button type="button" class="btn small btn-primary" id="tcalAdd" data-i18n="teAddBtn"></button>
+          </div>
+          <ul class="tcal-sessions" id="tcalSessions"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- New / edit appointment: a pop-up window, opened with "+ New appointment" or "Edit" -->
+    <div id="apptModal" class="alarm" hidden>
+    <section class="alarm-box modal-box appt-box" id="formCard" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+      <div class="modal-head">
+        <h2 id="formTitle"></h2>
+        <button type="button" class="auth-close" id="apptClose" data-i18n-title="close">✕</button>
+      </div>
+      <form id="apptForm" autocomplete="off">
+        <input type="hidden" id="apptId" />
+        <label><span data-i18n="title"></span> *
+          <input type="text" id="title" required data-i18n-ph="titlePh" />
+        </label>
+
+        <div class="row">
+          <label><span data-i18n="contactLabel"></span> <span class="muted" data-i18n="optional"></span>
+            <select id="apptContact"></select>
+          </label>
+          <label><span data-i18n="assignedTo"></span>
+            <select id="apptAssignee"></select>
+          </label>
+        </div>
+
+        <label><span data-i18n="type"></span>
+          <select id="type">
+            <option value="Appointment" data-i18n="appointment"></option>
+            <option value="Visit" data-i18n="visit"></option>
+          </select>
+        </label>
+
+        <div class="row">
+          <label><span data-i18n="date"></span> *
+            <input type="date" id="date" required />
+          </label>
+          <label><span data-i18n="hour"></span> *
+            <input type="time" id="time" required />
+          </label>
+        </div>
+
+        <label><span data-i18n="email"></span> <span class="muted" data-i18n="optional"></span>
+          <input type="email" id="email" placeholder="name@example.com" />
+        </label>
+
+        <div class="field">
+          <span class="field-label"><span data-i18n="address"></span> <span class="muted" data-i18n="optional"></span></span>
+          <div class="addr-row">
+            <input type="text" id="address" data-i18n-ph="addrPh" />
+            <button type="button" class="btn icon-btn" id="addrSearch" data-i18n-title="addrSearchTitle">🔍</button>
+            <button type="button" class="btn icon-btn" id="addrGps" data-i18n-title="gpsTitle">📍</button>
+          </div>
+          <input type="hidden" id="lat" />
+          <input type="hidden" id="lon" />
+          <ul class="suggest" id="addrSuggest" hidden></ul>
+          <p class="addr-msg" id="addrMsg"></p>
+          <iframe id="addrMap" class="addr-map" title="Map" loading="lazy" hidden></iframe>
+        </div>
+
+        <label><span data-i18n="notes"></span> <span class="muted" data-i18n="optional"></span>
+          <textarea id="notes" rows="2" data-i18n-ph="notesPh"></textarea>
+        </label>
+
+        <fieldset>
+          <legend data-i18n="alarmReminders"></legend>
+          <label class="check"><input type="checkbox" id="remDayBefore" checked /> <span data-i18n="remDayBefore"></span></label>
+          <label class="check"><input type="checkbox" id="remHourBefore" checked /> <span data-i18n="remHourBefore"></span></label>
+          <label class="check"><input type="checkbox" id="remAtTime" checked /> <span data-i18n="remAtTime"></span></label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" id="saveBtn"></button>
+          <button type="button" class="btn btn-ghost" id="cancelEdit" data-i18n="cancel"></button>
+        </div>
+      </form>
+    </section>
+    </div>
+
+    <!-- List -->
+    <section class="card" id="listCard">
+      <div class="list-head">
+        <h2 data-i18n="upcoming"></h2>
+        <span class="badge" id="countBadge">0</span>
+        <span class="spacer"></span>
+        <button type="button" class="btn small btn-primary" id="newAppt" data-i18n="newApptBtn"></button>
+      </div>
+
+      <div class="filters">
+        <input type="search" id="fText" data-i18n-ph="searchPh" />
+        <select id="fType">
+          <option value="" data-i18n="allTypes"></option>
+          <option value="Appointment" data-i18n="appointments"></option>
+          <option value="Visit" data-i18n="visits"></option>
+        </select>
+        <select id="fRange">
+          <option value="upcoming" data-i18n="upcoming"></option>
+          <option value="today" data-i18n="today"></option>
+          <option value="tomorrow" data-i18n="tomorrow"></option>
+          <option value="week" data-i18n="next7"></option>
+          <option value="past" data-i18n="past"></option>
+          <option value="all" data-i18n="all"></option>
+        </select>
+        <input type="date" id="fDate" data-i18n-title="filterDate" />
+        <select id="fEmail">
+          <option value="" data-i18n="anyContact"></option>
+          <option value="with" data-i18n="withEmail"></option>
+          <option value="without" data-i18n="withoutEmail"></option>
+        </select>
+        <select id="fAssignee" data-i18n-title="assignedTo"></select>
+        <button class="btn btn-ghost small" id="clearFilters" data-i18n="clear"></button>
+      </div>
+
+      <ul id="list" class="list"></ul>
+      <p id="empty" class="empty" data-i18n="empty"></p>
+    </section>
+
+    <!-- Events: Memorial, Assembly, Convention, CO visit… (one-time or repeating) -->
+    <section class="card events-card">
+      <div class="list-head">
+        <h2 data-i18n="events"></h2>
+        <span class="badge" id="eventCount">0</span>
+        <span class="spacer"></span>
+        <select id="evShow" class="ev-show">
+          <option value="upcoming" data-i18n="upcoming"></option>
+          <option value="all" data-i18n="all"></option>
+        </select>
+        <button class="btn small btn-primary" id="newEvent" data-i18n="newEvent"></button>
+      </div>
+      <ul id="eventList" class="list ev-list"></ul>
+      <p id="eventEmpty" class="empty" data-i18n="noEvents"></p>
+    </section>
+
+    <!-- Assignments (tasks with a due date) -->
+    <section class="card tasks-card">
+      <div class="list-head">
+        <h2 data-i18n="assignments"></h2>
+        <span class="badge" id="taskCount">0</span>
+        <span class="late-badge" id="taskOverdue" hidden></span>
+        <span class="spacer"></span>
+        <button class="btn small btn-primary" id="newTask" data-i18n="newTask"></button>
+      </div>
+      <div class="filters task-filters">
+        <input type="search" id="tfSearch" data-i18n-ph="taskSearchPh" />
+        <select id="tfStatus">
+          <option value="open" data-i18n="toDo"></option>
+          <option value="done" data-i18n="doneLbl"></option>
+          <option value="all" data-i18n="all"></option>
+        </select>
+        <select id="tfAssignee" data-i18n-title="assignedTo"></select>
+      </div>
+      <ul id="taskList" class="list"></ul>
+      <p id="taskEmpty" class="empty"></p>
+    </section>
+
+    <!-- Contacts -->
+    <section class="card contacts">
+      <div class="list-head">
+        <h2 data-i18n="contacts"></h2>
+        <span class="badge" id="contactCount">0</span>
+        <span class="spacer"></span>
+        <button class="btn small btn-primary" id="newContact" data-i18n="newContact"></button>
+      </div>
+      <div class="filters contact-filters">
+        <input type="search" id="cSearch" data-i18n-ph="contactSearchPh" />
+        <select id="cRelFilter"></select>
+      </div>
+      <ul id="contactList" class="list"></ul>
+      <p id="contactEmpty" class="empty"></p>
+    </section>
+
+    <!-- Quick notes -->
+    <section class="card quicknotes">
+      <div class="list-head">
+        <h2 data-i18n="quickNotes"></h2>
+        <button class="btn small note-btn" id="quickInsert" data-i18n="insertAddr"></button>
+      </div>
+      <textarea id="quickNotes" data-i18n-ph="quickPh"></textarea>
+      <div class="addr-chips" id="quickAddr" hidden></div>
+      <div class="note-tools">
+        <span class="muted" id="quickStatus"></span>
+        <button class="btn small btn-ghost" id="quickClear" data-i18n="clearNotes"></button>
+      </div>
+    </section>
+
+    <!-- Planner: to-do lists by day / week -->
+    <!-- Map: your contacts and upcoming visits as pins -->
+    <section class="card map-card" hidden>
+      <div class="list-head">
+        <h2 data-icon="🗺️" data-i18n="mapTitle"></h2>
+        <span class="spacer"></span>
+        <button type="button" class="btn small btn-ghost" id="mapNearMe" data-i18n="mapNearMe"></button>
+      </div>
+      <p class="muted small-text" data-i18n="mapIntro"></p>
+      <div class="map-tools">
+        <form class="map-search" id="mapSearchForm" role="search">
+          <input type="search" id="mapSearch" data-i18n-ph="mapSearchPh" enterkeyhint="search" />
+          <button type="submit" class="btn btn-primary map-search-btn" id="mapSearchBtn"><span aria-hidden="true">🔍</span> <span data-i18n="mapSearchBtn"></span></button>
+        </form>
+        <div class="act-filters" id="mapFilters" role="group"></div>
+      </div>
+      <div class="map-box" id="mapBox"></div>
+      <div class="map-legend" id="mapLegend"></div>
+      <p class="addr-msg" id="mapMsg"></p>
+      <ul class="map-list" id="mapList"></ul>
+    </section>
+
+    <section class="card planner">
+      <div class="pl-top">
+        <h2 data-i18n="planner"></h2>
+        <div class="plan-toggle pl-views" role="group">
+          <button type="button" id="plMonth" data-i18n="viewMonth"></button>
+          <button type="button" id="plDay" data-i18n="viewDay"></button>
+          <button type="button" id="plWeek" data-i18n="viewWeek"></button>
+        </div>
+      </div>
+      <div class="pl-nav">
+        <button type="button" class="btn small btn-ghost" id="plPrev" aria-label="◀">◀</button>
+        <button type="button" class="btn small btn-ghost" id="plToday" data-i18n="today"></button>
+        <button type="button" class="btn small btn-ghost" id="plNext" aria-label="▶">▶</button>
+        <strong class="pl-title" id="plTitle"></strong>
+        <!-- month calendar: jump to any month and year -->
+        <span class="pl-pick" id="plPick" hidden>
+          <select id="plPickMonth" aria-label="Month"></select>
+          <select id="plPickYear" aria-label="Year"></select>
+        </span>
+      </div>
+
+      <!-- Month: the calendar stays open, and the chosen day is shown with it (under it, or beside it on wide screens) -->
+      <div class="pl-split" id="plSplit">
+      <div id="plMonthView">
+        <div class="pl-mdow" id="plMonthDow"></div>
+        <div class="pl-month" id="plMonthGrid"></div>
+        <p class="pl-legend">
+          <span><i class="dot appt"></i><span data-i18n="actAppts"></span></span>
+          <span><i class="dot event"></i><span data-i18n="events" data-strip-icon></span></span>
+          <span><i class="dot task"></i><span data-i18n="assignments" data-strip-icon></span></span>
+          <span><i class="dot todo"></i><span data-i18n="qaTodo"></span></span>
+          <span><i class="dot time"></i><span data-i18n="trackerTitle" data-strip-icon></span></span>
+        </p>
+        <p class="muted small-text" data-i18n="plMonthHint"></p>
+      </div>
+
+      <!-- one day -->
+      <div id="plDayView" hidden>
+        <h3 class="pl-dayhead" id="plDayHead" hidden></h3>
+        <p class="pl-saved" id="plSaved" hidden></p>
+        <div class="pl-progress" id="plProgress" hidden>
+          <span id="plProgressText"></span>
+          <span class="bar"><span id="plProgressBar"></span></span>
+        </div>
+        <div class="pl-late" id="plLate" hidden>
+          <span id="plLateText"></span>
+          <button type="button" class="btn small btn-primary" data-pact="moveLate" data-i18n="moveToday"></button>
+        </div>
+        <ul class="pl-list" id="plList"></ul>
+        <p class="empty small-empty" id="plEmpty" data-i18n="nothingPlanned"></p>
+        <form class="pl-add" id="plAddForm" autocomplete="off">
+          <input type="text" id="plText" data-i18n-ph="addTodoPh" maxlength="200" />
+          <!-- the day (calendar) and the time as hour : minute + AM/PM — no clock dial -->
+          <div class="pl-when">
+            <label class="pl-field"><span data-i18n="plDateLabel"></span>
+              <input type="date" id="plDate" />
+            </label>
+            <div class="pl-field"><span data-i18n="plTimeLabel"></span>
+              <span class="pl-time" id="plTimeBox">
+                <select id="plHour" aria-label="Hour"><option value="">--</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+                <b aria-hidden="true">:</b>
+                <select id="plMin" aria-label="Minutes"><option value="">--</option><option value="00">00</option><option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
+                <select id="plAmPm" aria-label="AM / PM"><option value="am">AM</option><option value="pm">PM</option></select>
+              </span>
+            </div>
+          </div>
+          <input type="hidden" id="plTime" />
+          <button type="submit" class="btn btn-primary" data-i18n="addTodo"></button>
+          <label class="check pl-anytime-check"><input type="checkbox" id="plAnytimeToggle" /> <span data-i18n="noDate"></span></label>
+        </form>
+        <details class="pl-anytime">
+          <summary data-i18n="anytime"></summary>
+          <ul class="pl-list" id="plAnytimeList"></ul>
+          <p class="muted small-text" id="plAnytimeEmpty" data-i18n="anytimeEmpty"></p>
+        </details>
+      </div>
+
+      </div>
+
+      <!-- seven days -->
+      <div id="plWeekView" hidden>
+        <div class="pl-week" id="plWeekGrid"></div>
+      </div>
+    </section>
+
+    <!-- Moments: photos of good moments (encrypted, on this device) -->
+    <section class="card moments-card" hidden>
+      <div class="list-head"><h2 data-icon="📸" data-i18n="moments" data-strip-icon></h2><span class="badge" id="momCount"></span></div>
+      <p class="muted small-text" data-i18n="momIntro"></p>
+      <!-- not a Supporter yet: Moments is a Supporter extra (moments.js) -->
+      <div class="mom-lock" id="momLock" hidden>
+        <span class="mom-lock-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+        <strong data-i18n="momLockTitle"></strong>
+        <p data-i18n="momLockText"></p>
+        <button type="button" class="btn btn-primary" id="momLockBtn"><span aria-hidden="true">★</span> <span data-i18n="homeSupTitle"></span></button>
+      </div>
+      <div id="momOpen">
+      <div class="mom-actions">
+        <label class="btn btn-primary mom-btn">📷 <span data-i18n="momTake"></span>
+          <input type="file" id="momCamera" accept="image/*" capture="environment" hidden />
+        </label>
+        <label class="btn btn-ghost mom-btn">🖼️ <span data-i18n="momPick"></span>
+          <input type="file" id="momPickInput" accept="image/*" multiple hidden />
+        </label>
+      </div>
+      <div class="mom-grid" id="momGrid"></div>
+      <p class="empty small-empty" id="momEmpty" data-i18n="momEmpty"></p>
+      <p class="muted small-text">🔒 <span data-i18n="momPrivacy"></span></p>
+      </div>
+    </section>
+
+    <!-- Territories: the territory cards (number, dates, notes, map: QR code / link / pin / outline, photo of the card) -->
+    <section class="card territories-card" hidden>
+      <div class="list-head"><h2 data-icon="🏘️" data-i18n="trTitle"></h2><span class="badge" id="trCount"></span>
+        <span class="spacer"></span><button type="button" class="btn btn-primary small" id="trAddBtn" data-i18n="trAdd"></button></div>
+      <p class="muted small-text" data-i18n="trIntro"></p>
+      <ul class="tr-list" id="trList"></ul>
+      <p class="empty small-empty" id="trEmpty" data-i18n="trEmpty"></p>
+    </section>
+  </main>
+
+  <!-- ================= Activity ================= -->
+  <section class="page" data-page="activity" hidden>
+    <!-- one week at a time: totals, each day, and time per activity -->
+    <div class="card act-week">
+      <div class="list-head">
+        <h2 data-i18n="wkTitle"></h2>
+        <span class="spacer"></span>
+        <div class="wk-nav">
+          <button type="button" class="btn small btn-ghost" id="wkPrev" aria-label="◀">◀</button>
+          <button type="button" class="btn small btn-ghost" id="wkThis" data-i18n="wkThisWeek"></button>
+          <button type="button" class="btn small btn-ghost" id="wkNext" aria-label="▶">▶</button>
+        </div>
+      </div>
+      <p class="wk-range" id="wkRange"></p>
+      <div class="dash-stats act-stats" id="actStats"></div>
+      <div class="wk-days" id="wkDays"></div>
+      <h3 class="wk-sub" data-i18n="wkByPurpose"></h3>
+      <ul class="totals wk-purposes" id="wkPurposes"></ul>
+    </div>
+
+    <div class="card">
+      <h2 data-i18n="actAllTitle"></h2>
+      <p class="muted small-text" data-i18n="actIntro"></p>
+      <div class="act-filters" id="actFilters" role="group"></div>
+      <div id="actFeed"></div>
+      <button type="button" class="btn btn-ghost act-more" id="actMore" data-i18n="showMore" hidden></button>
+    </div>
+  </section>
+
+  <!-- ================= Progress: how you're doing over time ================= -->
+  <section class="page" data-page="progress" hidden>
+    <div class="card goal-card" id="prGoal" hidden><h2 data-icon="🎯" data-i18n="pubGoalTitle"></h2><div class="goal-box"></div></div>
+    <div class="card gh-card" id="prGoalHist" hidden>
+      <h2 data-icon="🗓️" data-i18n="pubHistTitle"></h2>
+      <p class="muted small-text" data-i18n="pubHistIntro"></p>
+      <ul class="gh-list" id="prGoalHistList"></ul>
+    </div>
+    <div class="card pr-card">
+      <div class="list-head">
+        <h2 data-icon="📊" data-i18n="navProgress"></h2>
+        <span class="spacer"></span>
+        <div class="plan-toggle pr-toggle" role="group">
+          <button type="button" data-prmode="week" data-i18n="prWeeks"></button>
+          <button type="button" data-prmode="month" data-i18n="prMonths"></button>
+        </div>
+      </div>
+      <p class="muted small-text" data-i18n="prIntro"></p>
+
+      <div class="pr-hero">
+        <div>
+          <span class="pr-hero-label" id="prTimeLabel"></span>
+          <strong class="pr-hero-num" id="prTimeNum"></strong>
+          <span class="pr-change" id="prTimeChange"></span>
+        </div>
+      </div>
+      <div class="pr-chart" id="prChart"></div>
+    </div>
+
+    <div class="pr-stats" id="prStats"></div>
+
+    <div class="card">
+      <h2 data-icon="🏆" data-i18n="prTop"></h2>
+      <ul class="totals" id="prTop"></ul>
+    </div>
+  </section>
+
+  <!-- ================= Profile ================= -->
+  <section class="page narrow" data-page="profile" hidden>
+    <div class="card profile-card">
+      <div class="profile-head">
+        <button type="button" class="avatar-btn" id="profAvatar" data-i18n-title="changePhoto"></button>
+        <div class="profile-who">
+          <h2 id="profName"></h2>
+          <p class="muted" id="acctEmail"></p>
+          <p class="muted small-text prof-contact" id="profContact"></p>
+          <p class="muted small-text" id="profSince"></p>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" id="acctPhoto" data-i18n="changePhoto"></button>
+        <button type="button" class="btn btn-ghost" id="profEditName" data-i18n="editProfile"></button>
+      </div>
+      <form class="name-form" id="nameForm" hidden>
+        <label><span data-i18n="yourName"></span>
+          <input type="text" id="profNameInput" maxlength="60" autocomplete="name" required />
+        </label>
+        <p class="addr-msg" id="nameMsg"></p>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" data-i18n="save"></button>
+          <button type="button" class="btn btn-ghost" id="nameCancel" data-i18n="cancel"></button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card" id="profPubCard">
+      <h2 data-icon="🎯" data-i18n="pubProfileTitle"></h2>
+      <ul class="pub-info" id="profPubInfo"></ul>
+      <button type="button" class="btn btn-ghost" data-pub-change data-i18n="pubChange"></button>
+    </div>
+
+    <div class="card" id="profCountryCard">
+      <h2 data-icon="🌍" data-i18n="countryLabel"></h2>
+      <p class="muted small-text" data-i18n="countryWhy"></p>
+      <select id="profCountry" aria-labelledby="profCountryCard"></select>
+      <p class="addr-msg" id="profCountryMsg"></p>
+    </div>
+
+    <div class="card paid-only" id="profSubCard">
+      <h2 data-i18n="subTitle"></h2>
+      <p id="profSubText"></p>
+      <button type="button" class="btn btn-primary" id="acctSub" data-i18n="manageSub"></button>
+    </div>
+
+    <div class="card" id="profSecCard">
+      <h2 data-i18n="secTitle"></h2>
+      <p class="muted small-text" data-i18n="secText"></p>
+      <button type="button" class="btn btn-ghost" id="acctPw" data-i18n="changePassword"></button>
+    </div>
+
+    <div class="card danger-card" id="profDangerCard">
+      <h2 data-i18n="dangerTitle"></h2>
+      <p class="muted small-text" data-i18n="dangerText"></p>
+      <button type="button" class="btn danger" id="acctDel" data-i18n="deleteAccount"></button>
+    </div>
+  </section>
+
+  <!-- ================= Settings ================= -->
+  <section class="page narrow" data-page="settings" hidden>
+    <div class="card settings-card">
+      <h2 data-i18n="navSettings"></h2>
+
+      <ul class="hub-list set-quick" id="setSyncList">
+        <li><button type="button" class="hub-tool sync-row" data-more="sync" id="setSyncBtn" aria-expanded="false" aria-controls="setSupportWrap"><span class="hub-ic" data-ic="🔄">🔄</span><span class="hub-name" data-i18n="qaSync"></span><span class="sync-tag"><span class="tag-ic" data-ic="☁️">☁️</span><span data-i18n="qaSyncTag"></span></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+      </ul>
+      <!-- Device Sync (closed until "Device Sync" is tapped): the Cloud and everything it gives -->
+      <div class="sync-wrap" id="setSupportWrap" hidden>
+      <h3 class="set-group" id="setSupportHead" data-i18n="supTitle"></h3>
+      <div class="set-support" id="setSupport">
+      <div class="set-cloud" id="setCloud">
+        <span class="set-cloud-ic" data-ic="☁️">☁️</span>
+        <div class="set-cloud-txt"><strong data-i18n="cloudSecTitle"></strong><p class="muted small-text" id="setCloudState"></p></div>
+        <button type="button" class="btn btn-primary" id="setCloudBtn"></button>
+      </div>
+        <ul class="sup-perks" id="setPerks">
+          <li><span class="sup-mark"></span><span data-i18n="inc1"></span></li>
+          <li><span class="sup-mark"></span><span><span class="sup-perk-ic" data-ic="📸" aria-hidden="true">📸</span> <span data-i18n="inc2"></span></span></li>
+          <li><span class="sup-mark"></span><span data-i18n="inc5" data-strip-icon></span></li>
+          <li><span class="sup-mark"></span><span data-i18n="perkIcons" data-strip-icon></span></li>
+          <li><span class="sup-mark"></span><span data-i18n="spPerk5"></span></li>
+        </ul>
+      <div class="set-row">
+        <div><strong data-i18n="setAccent"></strong><p class="muted small-text" data-i18n="setAccentHint"></p></div>
+        <div class="accent-pick" id="setAccentPick" role="radiogroup"></div>
+      </div>
+      <div class="set-row icon-style-row">
+        <div><strong data-i18n="setIcons"></strong><p class="muted small-text" data-i18n="setIconsHint"></p></div>
+        <div class="theme-pick icon-pick" id="setIconPick" role="radiogroup">
+          <button type="button" data-icon-pick="line" role="radio"><span class="ip-sample line"><span data-ic="📅">📅</span><span data-ic="👥">👥</span><span data-ic="📸">📸</span></span><span class="tp-name" data-i18n="iconsLine"></span></button>
+          <button type="button" data-icon-pick="color" role="radio"><span class="ip-sample color">📅 👥 📸</span><span class="tp-name" data-i18n="iconsColor"></span></button>
+        </div>
+      </div>
+        <p class="accent-lock" id="setAccentLock" hidden><span id="setAccentLockText"></span>
+          <button type="button" class="btn small btn-primary" id="setAccentLockBtn"></button></p>
+      </div>
+      </div>
+
+      <ul class="hub-list set-quick" id="setMoreList">
+        <li><button type="button" class="hub-tool" data-more="security"><span class="hub-ic" data-ic="🔒">🔒</span><span class="hub-name" data-i18n="secTitle"></span><span class="hub-state" id="setSecState"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="reminders"><span class="hub-ic" data-ic="🔔">🔔</span><span class="hub-name" data-i18n="remTitle"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="help"><span class="hub-ic" data-ic="❓">❓</span><span class="hub-name" data-i18n="helpBtn"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="feedback"><span class="hub-ic" data-ic="💬">💬</span><span class="hub-name" data-i18n="fbMenu"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li data-support-wrap hidden><a class="hub-tool" data-support><span class="hub-ic" data-ic="✉️">✉️</span><span class="hub-name" data-i18n="contactSupport"></span><span class="hub-state" data-support-addr></span><span class="hub-chev" aria-hidden="true">›</span></a></li>
+        <li><button type="button" class="hub-tool" data-more="shareapp"><span class="hub-ic" data-ic="📤">📤</span><span class="hub-name" data-i18n="shareMenu"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="rate"><span class="hub-ic" data-ic="⭐">⭐</span><span class="hub-name" data-i18n="rateTitle"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="whatsnew"><span class="hub-ic" data-ic="✨">✨</span><span class="hub-name" data-i18n="wnTitle"></span><span class="hub-state" id="setWnState"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="appinfo"><span class="hub-ic" data-ic="ℹ️">ℹ️</span><span class="hub-name" data-i18n="aiTitle"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="privacy"><span class="hub-ic" data-ic="🛡️">🛡️</span><span class="hub-name" data-i18n="legalPrivacy"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li><button type="button" class="hub-tool" data-more="terms"><span class="hub-ic" data-ic="📄">📄</span><span class="hub-name" data-i18n="legalTerms"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li id="setSupRow" hidden><button type="button" class="hub-tool sup-row" data-more="support"><span class="hub-ic sup-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><span class="hub-name" data-i18n="homeSupTitle"></span><span class="hub-chev" aria-hidden="true">›</span></button></li>
+        <li class="cloud-only"><button type="button" class="hub-tool more-out" data-more="logout"><span class="hub-ic" data-ic="🚪">🚪</span><span class="hub-name" data-i18n="navLogout"></span></button></li>
+      </ul>
+
+      <h3 class="set-group" data-i18n="setGeneral"></h3>
+      <div class="set-row">
+        <div><strong data-i18n="langLabel"></strong></div>
+        <select id="setLang" aria-label="Language"></select>
+      </div>
+      <div class="set-row">
+        <div><strong data-i18n="setAppearance"></strong><p class="muted small-text" data-i18n="setAppearanceHint"></p></div>
+        <div class="theme-pick" id="setThemePick" role="radiogroup">
+          <button type="button" data-theme-pick="light" role="radio"><span class="tp-mock tp-light" aria-hidden="true"><i class="tp-bar"></i><i class="tp-card"><i class="tp-line"></i><i class="tp-line short"></i><i class="tp-btn"></i></i></span><span class="tp-name" data-i18n="themeLight"></span></button>
+          <button type="button" data-theme-pick="dark" role="radio"><span class="tp-mock tp-dark" aria-hidden="true"><i class="tp-bar"></i><i class="tp-card"><i class="tp-line"></i><i class="tp-line short"></i><i class="tp-btn"></i></i></span><span class="tp-name" data-i18n="themeDark"></span></button>
+          <button type="button" data-theme-pick="auto" role="radio"><span class="tp-mock tp-auto" aria-hidden="true"><i class="tp-bar"></i><i class="tp-card"><i class="tp-line"></i><i class="tp-line short"></i><i class="tp-btn"></i></i></span><span class="tp-name" data-i18n="themeAuto"></span></button>
+        </div>
+        <select id="setTheme" hidden>
+          <option value="light" data-i18n="themeLight"></option>
+          <option value="dark" data-i18n="themeDark"></option>
+          <option value="auto" data-i18n="themeAuto"></option>
+        </select>
+      </div>
+      <p class="lk-lock-all" id="lkTextLock" hidden><span data-i18n="lkAllLocked"></span></p>
+      <div class="set-row look-row">
+        <div><strong data-i18n="lkText"></strong><p class="muted small-text" data-i18n="lkTextHint"></p></div>
+        <div class="seg-pick seg-4" data-look="textsize" role="radiogroup">
+          <button type="button" data-v="s" role="radio"><b class="ts-a ts-s" aria-hidden="true">A</b><span data-i18n="lkS"></span></button>
+          <button type="button" data-v="m" role="radio"><b class="ts-a ts-m" aria-hidden="true">A</b><span data-i18n="lkM"></span></button>
+          <button type="button" data-v="l" role="radio"><b class="ts-a ts-l" aria-hidden="true">A</b><span data-i18n="lkL"></span></button>
+          <button type="button" data-v="xl" role="radio"><b class="ts-a ts-xl" aria-hidden="true">A</b><span data-i18n="lkXL"></span></button>
+        </div>
+      </div>
+      <div class="set-row look-row">
+        <div><strong data-i18n="lkSpace"></strong><p class="muted small-text" data-i18n="lkSpaceHint"></p></div>
+        <div class="seg-pick" data-look="density" role="radiogroup">
+          <button type="button" data-v="comfortable" role="radio"><span data-i18n="lkComfort"></span></button>
+          <button type="button" data-v="compact" role="radio"><span data-i18n="lkCompact"></span></button>
+        </div>
+      </div>
+      <div class="set-row look-row">
+        <div><strong data-i18n="lkCorners"></strong><p class="muted small-text" data-i18n="lkCornersHint"></p></div>
+        <div class="seg-pick" data-look="corners" role="radiogroup">
+          <button type="button" data-v="round" role="radio"><i class="cn-box cn-round" aria-hidden="true"></i><span data-i18n="lkRound"></span></button>
+          <button type="button" data-v="square" role="radio"><i class="cn-box cn-square" aria-hidden="true"></i><span data-i18n="lkSquare"></span></button>
+        </div>
+      </div>
+      <div class="set-row look-row">
+        <div><strong data-i18n="lkFont"></strong><p class="muted small-text" data-i18n="lkFontHint"></p></div>
+        <div class="seg-pick" data-look="font" role="radiogroup">
+          <button type="button" data-v="standard" role="radio"><b class="fn-a fn-std" aria-hidden="true">Aa</b><span data-i18n="lkStandard"></span></button>
+          <button type="button" data-v="classic" role="radio"><b class="fn-a fn-classic" aria-hidden="true">Aa</b><span data-i18n="lkClassic"></span></button>
+        </div>
+      </div>
+      <div class="set-row look-row">
+        <div><strong data-i18n="lkBold"></strong><p class="muted small-text" data-i18n="lkBoldHint"></p></div>
+        <div class="seg-pick" data-look="bold" role="radiogroup">
+          <button type="button" data-v="off" role="radio"><span data-i18n="lkOff"></span></button>
+          <button type="button" data-v="on" role="radio"><span data-i18n="lkOn"></span></button>
+        </div>
+      </div>
+      <div class="set-row look-row">
+        <div><strong data-i18n="lkMotion"></strong><p class="muted small-text" data-i18n="lkMotionHint"></p></div>
+        <div class="seg-pick" data-look="motion" role="radiogroup">
+          <button type="button" data-v="on" role="radio"><span data-i18n="lkOn"></span></button>
+          <button type="button" data-v="off" role="radio"><span data-i18n="lkOff"></span></button>
+        </div>
+      </div>
+      <div class="set-row">
+        <div><strong data-i18n="setWeekStart"></strong><p class="muted small-text" data-i18n="setWeekStartHint"></p></div>
+        <select id="setWeekStart"></select>
+      </div>
+
+      <h3 class="set-group" data-i18n="setReminders"></h3>
+      <div class="set-row">
+        <div><strong data-i18n="setAlarms"></strong><p class="muted small-text" id="setAlarmsState"></p></div>
+        <button type="button" class="btn" id="setAlarmsBtn"></button>
+      </div>
+      <div class="set-row">
+        <div><strong data-i18n="setTestSound"></strong><p class="muted small-text" data-i18n="setTestSoundHint"></p></div>
+        <button type="button" class="btn btn-ghost" id="setTestSound" data-i18n="testNotifBtn"></button>
+      </div>
+      <div class="set-row set-row-top">
+        <div><strong data-i18n="setDefaultRem"></strong><p class="muted small-text" data-i18n="setDefaultRemHint"></p></div>
+        <div class="set-checks">
+          <label class="check"><input type="checkbox" id="setRemDay" /> <span data-i18n="remDayBefore"></span></label>
+          <label class="check"><input type="checkbox" id="setRemHour" /> <span data-i18n="remHourBefore"></span></label>
+          <label class="check"><input type="checkbox" id="setRemAt" /> <span data-i18n="remAtTime"></span></label>
+        </div>
+      </div>
+
+      <div class="set-row">
+        <div><strong data-i18n="wxSet"></strong><p class="muted small-text" data-i18n="wxSetHint"></p></div>
+        <label class="check"><input type="checkbox" id="setWeather" /> <span data-i18n="wxTitle"></span></label>
+      </div>
+
+      <h3 class="set-group" data-i18n="helpBtn"></h3>
+      <div class="set-row">
+        <div><strong data-i18n="setTutorials"></strong><p class="muted small-text" data-i18n="setTutorialsHint"></p></div>
+        <button type="button" class="btn btn-ghost" id="setHelp" data-i18n="setTutorialsBtn"></button>
+      </div>
+      <div class="set-row">
+        <div><strong data-i18n="fbMenu"></strong><p class="muted small-text" data-i18n="fbIntro"></p></div>
+        <button type="button" class="btn btn-ghost" id="setFeedback">💬 <span data-i18n="fbMenu"></span></button>
+      </div>
+
+      <h3 class="set-group" data-i18n="setData"></h3>
+      <div class="set-row" id="setSyncRow">
+        <div><strong data-i18n="setSync"></strong><p class="muted small-text" id="setSyncState"></p></div>
+        <button type="button" class="btn btn-ghost" id="setSyncNow" data-i18n="setSyncNow"></button>
+      </div>
+      <div class="set-row">
+        <div><strong data-i18n="setExport"></strong><p class="muted small-text" data-i18n="setExportHint"></p></div>
+        <button type="button" class="btn btn-ghost" id="setExport" data-i18n="setExportBtn"></button>
+      </div>
+      <div class="set-row">
+        <div><strong data-i18n="setImport"></strong><p class="muted small-text" data-i18n="setImportHint"></p></div>
+        <label class="btn btn-ghost"><span data-i18n="setImportBtn"></span>
+          <input type="file" id="setImportFile" accept="application/json,.json" hidden />
+        </label>
+      </div>
+      <p class="addr-msg ok set-saved" id="setSaved"></p>
+
+      <p class="muted small-text set-version" id="setVersion"></p>
+    </div>
+  </section>
+
+  <footer class="app-footer legal-links"><a href="privacy.html" target="_blank" rel="noopener" data-i18n="legalPrivacy"></a> · <a href="terms.html" target="_blank" rel="noopener" data-i18n="legalTerms"></a><span data-support-wrap> · <a data-support data-i18n="legalSupport"></a></span><span class="copyright" data-copyright></span></footer>
+
+
+  <!-- Change password window -->
+  <div id="pwModal" class="alarm" hidden>
+    <form class="alarm-box modal-box" id="pwForm">
+      <h3 data-i18n="changePassword"></h3>
+      <label><span data-i18n="currentPassword"></span>
+        <input type="password" id="pwCurrent" required autocomplete="current-password" />
+      </label>
+      <label><span data-i18n="newPassword"></span>
+        <input type="password" id="pwNew" required autocomplete="new-password" />
+      </label>
+      <label><span data-i18n="confirmPassword"></span>
+        <input type="password" id="pwConfirm" required autocomplete="new-password" />
+      </label>
+      <p class="addr-msg" id="pwMsg"></p>
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" data-i18n="save"></button>
+        <button type="button" class="btn btn-ghost" id="pwCancel" data-i18n="cancel"></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Profile picture window (yours or a contact's) -->
+  <div id="avatarModal" class="alarm" hidden>
+    <div class="alarm-box modal-box avatar-box">
+      <h3 id="avTitle"></h3>
+      <div class="avatar-preview" id="avPreview"></div>
+      <div class="actions avatar-actions">
+        <label class="btn btn-primary" id="avCameraBtn">📷 <span data-i18n="takePhoto"></span>
+          <input type="file" id="avCamera" accept="image/*" capture="user" hidden />
+        </label>
+        <label class="btn btn-ghost">🖼️ <span data-i18n="choosePhoto"></span>
+          <input type="file" id="avFile" accept="image/*" hidden />
+        </label>
+        <button type="button" class="btn danger" id="avRemove" data-i18n="removePhoto"></button>
+      </div>
+      <p class="addr-msg" id="avMsg"></p>
+      <p class="muted small-text">🔒 <span data-i18n="photoPrivate"></span></p>
+      <div class="actions">
+        <button type="button" class="btn btn-primary" id="avSave" data-i18n="save"></button>
+        <button type="button" class="btn btn-ghost" id="avCancel" data-i18n="cancel"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reminders: opened by Start Reminders — add what to be reminded of, when, and how often -->
+  <div id="remModal" class="alarm" hidden>
+    <div class="alarm-box modal-box rem-box" role="dialog" aria-modal="true" aria-labelledby="remTitle">
+      <div class="modal-head">
+        <h2 id="remTitle" data-icon="🔔" data-i18n="remTitle"></h2>
+        <button type="button" class="auth-close" id="remClose" data-i18n-title="close">✕</button>
+      </div>
+      <div class="rem-status" id="remStatus">
+        <span id="remStatusText"></span>
+        <button type="button" class="btn small" id="remToggle"></button>
+      </div>
+      <form id="remForm" class="rem-form" autocomplete="off">
+        <label><span data-i18n="remWhat"></span> *
+          <input type="text" id="rmText" maxlength="120" required data-i18n-ph="remWhatPh" />
+        </label>
+        <div class="row">
+          <label><span data-i18n="teDate"></span> *
+            <input type="date" id="rmDate" required />
+          </label>
+          <label><span data-i18n="hour"></span> *
+            <input type="time" id="rmTime" required />
+          </label>
+        </div>
+        <label><span data-i18n="remRepeat"></span>
+          <select id="rmRepeat"></select>
+        </label>
+        <p class="addr-msg" id="rmMsg"></p>
+        <button type="submit" class="btn btn-primary rem-add" data-i18n="remAdd"></button>
+      </form>
+      <h3 class="rem-list-title" data-i18n="remList"></h3>
+      <ul class="rem-list" id="remList"></ul>
+    </div>
+  </div>
+
+  <!-- Help: the list of tutorials -->
+  <!-- About you: name, picture, phone, email (+ password in the setup) -->
+  <div id="aboutModal" class="alarm" hidden>
+    <div class="setup-top">
+      <div class="setup-brand"><img class="logo" src="icons/logo.svg?v=305" alt="" /><strong data-i18n="setupTitle"></strong></div>
+      <span class="setup-step"></span>
+      <div class="setup-bar"><span></span></div>
+    </div>
+    <div class="alarm-box modal-box about-box" role="dialog" aria-modal="true" aria-labelledby="abTitle">
+      <div class="modal-head">
+        <h2 id="abTitle" data-icon="👤" data-i18n="aboutTitle"></h2>
+        <button type="button" class="auth-close" id="abClose" data-i18n-title="close">✕</button>
+      </div>
+      <form id="aboutForm" autocomplete="on">
+        <p class="setup-intro" data-i18n="setupIntro"></p>
+        <div class="ab-photo">
+          <button type="button" class="avatar-btn" id="abAvatar" data-i18n-title="changePhoto"></button>
+          <div><button type="button" class="btn btn-ghost small" id="abPhotoBtn"></button>
+            <p class="muted small-text" data-i18n="aboutOptional"></p></div>
+        </div>
+        <label><span data-i18n="yourName"></span> *
+          <input type="text" id="abName" maxlength="60" autocomplete="name" required />
+        </label>
+        <label><span data-i18n="aboutPhone"></span><span class="cloud-only"> *</span>
+          <input type="tel" id="abPhone" maxlength="40" autocomplete="tel" inputmode="tel" required />
+        </label>
+        <label><span data-i18n="aboutEmail"></span><span class="cloud-only"> *</span>
+          <input type="email" id="abEmail" maxlength="120" autocomplete="email" autocapitalize="none" spellcheck="false" required />
+        </label>
+        <p class="muted small-text ab-why cloud-only">📣 <span data-i18n="aboutContactWhy"></span></p>
+        <div class="ab-pw" id="abPwWrap" hidden>
+          <label><span data-i18n="password"></span> *
+            <input type="password" id="abPw" autocomplete="current-password" />
+          </label>
+          <label><span data-i18n="confirmPassword"></span> *
+            <input type="password" id="abPwConfirm" autocomplete="current-password" />
+          </label>
+          <p class="pw-match" id="abPwMatch" aria-live="polite"></p>
+          <p class="muted small-text">🔐 <span data-i18n="aboutPwHint"></span></p>
+          <div class="ab-forgot">
+            <button type="button" class="link-btn" id="abForgot" data-i18n="forgotPw"></button>
+            <p class="addr-msg" id="abForgotMsg" aria-live="polite"></p>
+          </div>
+        </div>
+        <p class="addr-msg" id="abMsg"></p>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost setup-back" data-i18n="chooseBack" hidden></button>
+          <button type="submit" class="btn btn-primary" data-i18n="save"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Which country? Asked once after sign-in (older accounts); the map and address search use it -->
+  <div id="countryModal" class="alarm" hidden>
+    <div class="setup-top">
+      <div class="setup-brand"><img class="logo" src="icons/logo.svg?v=305" alt="" /><strong data-i18n="setupTitle"></strong></div>
+      <span class="setup-step"></span>
+      <div class="setup-bar"><span></span></div>
+    </div>
+    <div class="alarm-box modal-box country-box" role="dialog" aria-modal="true" aria-labelledby="cmTitle">
+      <div class="modal-head">
+        <h2 id="cmTitle" data-icon="🌍" data-i18n="countryTitle"></h2>
+      </div>
+      <form id="countryForm">
+        <p class="setup-intro" data-i18n="setupIntro"></p>
+        <p class="muted" data-i18n="countryWhy"></p>
+        <select id="cmSelect" autocomplete="country" aria-labelledby="cmTitle"></select>
+        <p class="addr-msg" id="cmMsg"></p>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost setup-back" data-i18n="chooseBack" hidden></button>
+          <button type="submit" class="btn btn-primary" data-i18n="save"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Publisher status: asked when the app opens (once), changeable in Profile -->
+  <div id="statusModal" class="alarm" hidden>
+    <div class="setup-top">
+      <div class="setup-brand"><img class="logo" src="icons/logo.svg?v=305" alt="" /><strong data-i18n="setupTitle"></strong></div>
+      <span class="setup-step"></span>
+      <div class="setup-bar"><span></span></div>
+    </div>
+    <div class="alarm-box modal-box status-box" role="dialog" aria-modal="true" aria-labelledby="psTitle">
+      <div class="modal-head">
+        <h2 id="psTitle" data-icon="🎯" data-i18n="pubTitle"></h2>
+      </div>
+      <form id="statusForm">
+        <p class="setup-intro" data-i18n="setupIntro"></p>
+        <p class="muted small-text" data-i18n="pubWhy"></p>
+        <div class="pub-opts" id="psOptions" role="radiogroup" aria-labelledby="psTitle"></div>
+        <div class="pub-custom" id="psCustom" hidden>
+          <label><span data-i18n="pubCustomLabel"></span>
+            <input type="number" id="psGoal" min="1" max="999" step="0.5" inputmode="decimal" data-i18n-ph="pubCustomPh" />
+          </label>
+          <p class="muted small-text" data-i18n="pubCustomLater"></p>
+        </div>
+        <label class="pub-since" id="psSinceWrap" hidden><span id="psSinceLabel"></span>
+          <input type="date" id="psSince" />
+        </label>
+        <p class="addr-msg" id="psMsg"></p>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost setup-back" data-i18n="chooseBack" hidden></button>
+          <button type="submit" class="btn btn-primary" data-i18n="save"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- A moment: the photo, a few words and the day -->
+  <div id="momModal" class="alarm" hidden>
+    <div class="alarm-box modal-box mom-box" role="dialog" aria-modal="true" aria-labelledby="momTitle">
+      <div class="modal-head">
+        <h2 id="momTitle" data-icon="📸"></h2>
+        <button type="button" class="auth-close" id="momClose" data-i18n-title="close">✕</button>
+      </div>
+      <form id="momForm">
+        <img id="momImg" class="mom-photo" alt="" />
+        <label><span data-i18n="momCaption"></span>
+          <textarea id="momCaption" rows="2" maxlength="300"></textarea>
+        </label>
+        <label><span data-i18n="momDate"></span>
+          <input type="date" id="momDate" />
+        </label>
+        <p class="addr-msg" id="momMsg"></p>
+        <div class="actions mom-row">
+          <button type="button" class="btn btn-ghost" id="momShare">📤 <span data-i18n="momShare"></span></button>
+          <button type="button" class="btn btn-ghost danger-text" id="momDelete">🗑️ <span data-i18n="momDelete"></span></button>
+          <button type="submit" class="btn btn-primary" data-i18n="momSave"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Send feedback -->
+  <!-- Welcome: once, after the setup questions -->
+  <div id="welcomeModal" class="sp-overlay" hidden>
+    <div class="sp-sheet" role="dialog" aria-modal="true" aria-labelledby="wlTitle">
+      <span class="sp-handle" aria-hidden="true"></span>
+      <div class="wl-top">
+        <span class="wl-done">✓ <span data-i18n="wlAllSet"></span></span>
+        <span class="wl-avatar" aria-hidden="true">SD</span>
+        <h2 id="wlTitle" data-i18n="wlTitle"></h2>
+      </div>
+      <section class="sp-box sp-note">
+        <h3 class="sp-label"><span aria-hidden="true">✦</span> <span data-i18n="wlLabel"></span></h3>
+        <div class="sp-paper">
+          <p class="wl-hi" data-i18n="wlHi"></p>
+          <p data-i18n="wlP1"></p>
+          <p data-i18n="wlP2"></p>
+        </div>
+        <p class="sp-sign sp-sign-center">— Steve</p>
+      </section>
+      <button type="button" class="btn btn-primary sp-wide" id="wlStart" data-i18n="wlStart"></button>
+    </div>
+  </div>
+
+  <!-- Supporter: a note from Steve, the yearly amounts, a little tip, feedback (website only) -->
+  <div id="supportModal" class="sp-overlay" hidden>
+    <div class="sp-sheet" role="dialog" aria-modal="true" aria-label="Supporter">
+      <span class="sp-handle" aria-hidden="true"></span>
+      <button type="button" class="icon-btn sp-close" id="spClose" aria-label="Close">✕</button>
+      <div id="spBody"></div>
+    </div>
+  </div>
+
+  <!-- Share MyServiceTime: a QR code of the link, plus Share and Copy -->
+  <div id="shareModal" class="sp-overlay" hidden>
+    <div class="sp-sheet share-sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle">
+      <span class="sp-handle" aria-hidden="true"></span>
+      <button type="button" class="icon-btn sp-close" id="shClose" aria-label="Close">✕</button>
+      <h2 id="shTitle" class="sh-title" data-i18n="shareMenu"></h2>
+      <p class="muted sh-sub" data-i18n="shareScan"></p>
+      <div class="sh-qr" id="shQr" aria-live="polite"></div>
+      <p class="sh-link" id="shLink"></p>
+      <div class="sh-actions">
+        <button type="button" class="btn btn-primary" id="shShare"><span aria-hidden="true">📤</span> <span data-i18n="shareBtn"></span></button>
+        <button type="button" class="btn btn-ghost" id="shCopy"><span aria-hidden="true">🔗</span> <span data-i18n="shareCopy"></span></button>
+      </div>
+      <p class="addr-msg ok sh-msg" id="shMsg" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div id="feedbackModal" class="alarm" hidden>
+    <div class="alarm-box modal-box fb-box" role="dialog" aria-modal="true" aria-labelledby="fbTitle">
+      <div class="modal-head">
+        <h2 id="fbTitle" data-icon="💬" data-i18n="fbTitle"></h2>
+        <button type="button" class="auth-close" id="fbClose" data-i18n-title="close">✕</button>
+      </div>
+      <form id="feedbackForm">
+        <p class="muted small-text" data-i18n="fbIntro"></p>
+        <div class="fb-rate"><span data-i18n="fbRate"></span>
+          <div class="fb-stars" id="fbStars" role="radiogroup"><button type="button" data-star="1" role="radio" aria-label="1">★</button><button type="button" data-star="2" role="radio" aria-label="2">★</button><button type="button" data-star="3" role="radio" aria-label="3">★</button><button type="button" data-star="4" role="radio" aria-label="4">★</button><button type="button" data-star="5" role="radio" aria-label="5">★</button></div>
+        </div>
+        <label><span data-i18n="fbKind"></span>
+          <select id="fbKind">
+            <option value="bug" data-i18n="fbBug"></option>
+            <option value="idea" data-i18n="fbIdea"></option>
+            <option value="praise" data-i18n="fbPraise"></option>
+            <option value="other" data-i18n="fbOther"></option>
+          </select>
+        </label>
+        <label><span><span data-i18n="fbMsg"></span> *</span>
+          <textarea id="fbMsg" rows="5" maxlength="4000" data-i18n-ph="fbMsgPh"></textarea>
+        </label>
+        <label><span data-i18n="fbEmail"></span>
+          <input type="email" id="fbEmail" maxlength="120" autocomplete="email" autocapitalize="none" spellcheck="false" />
+        </label>
+        <p class="muted small-text">🔓 <span data-i18n="fbPrivacy"></span></p>
+        <p class="addr-msg" id="fbNote"></p>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" id="fbSend" data-i18n="fbSend"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="helpModal" class="alarm" hidden>
+    <div class="alarm-box modal-box help-box" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+      <div class="modal-head">
+        <h2 id="helpTitle" data-icon="❓"></h2>
+        <button type="button" class="auth-close" id="helpClose" data-i18n-title="close">✕</button>
+      </div>
+      <p class="muted small-text" id="helpIntro"></p>
+      <ul class="help-list" id="helpList"></ul>
+      <!-- "Need more help? Email us" (shown once config.js has supportEmail) -->
+      <div class="help-mail" data-support-wrap hidden>
+        <span class="help-mail-ic" data-ic="✉️" aria-hidden="true">✉️</span>
+        <div><strong data-i18n="helpMailTitle"></strong><p class="muted small-text"><span data-i18n="helpMailText"></span> <a data-support data-support-addr></a></p></div>
+        <a class="btn btn-primary small" data-support data-i18n="helpMailBtn"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guided tour: dims the screen, lights up one part of the app and explains it -->
+  <div id="tour" class="tour" hidden>
+    <div class="tour-spot" id="tourSpot"></div>
+    <div class="tour-card" id="tourCard" role="dialog" aria-live="polite" aria-labelledby="tourTitle">
+      <div class="tour-top"><span class="tour-step" id="tourStepNo"></span><span class="tour-dots" id="tourDots"></span></div>
+      <h3 id="tourTitle"></h3>
+      <p id="tourBody"></p>
+      <div class="tour-actions">
+        <button type="button" class="link-btn tour-skip" id="tourSkip"></button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-ghost" id="tourBack"></button>
+        <button type="button" class="btn btn-primary" id="tourNext"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Time entry window: add time by hand, change a session, or save a finished timer with a note -->
+  <div id="timeModal" class="alarm" hidden>
+    <form class="alarm-box modal-box time-box" id="timeForm" autocomplete="off" role="dialog" aria-modal="true" aria-labelledby="teTitle">
+      <div class="modal-head">
+        <h2 id="teTitle" data-icon="⏱️"></h2>
+        <button type="button" class="auth-close" id="teClose" data-i18n-title="close">✕</button>
+      </div>
+      <p class="te-summary" id="teSummary" hidden></p>
+      <label><span data-i18n="purpose"></span> *
+        <input type="text" id="teName" list="trkNames" maxlength="80" required data-i18n-ph="trkPh" />
+      </label>
+      <label><span data-i18n="teDate"></span> *
+        <input type="date" id="teDate" required />
+      </label>
+      <div class="row">
+        <label><span data-i18n="teFrom"></span> *
+          <input type="time" id="teStart" required />
+        </label>
+        <label><span data-i18n="teTo"></span> *
+          <input type="time" id="teEnd" required />
+        </label>
+      </div>
+      <p class="addr-msg te-dur" id="teDur"></p>
+      <label><span data-i18n="teNoteLabel"></span> <span class="muted" data-i18n="optional"></span>
+        <textarea id="teNote" rows="4" maxlength="500" data-i18n-ph="teNotePh"></textarea>
+      </label>
+      <div class="actions">
+        <button type="button" class="link-btn danger-text discard-btn te-discard" id="teDiscard" data-i18n="discardTime" hidden></button>
+        <button type="submit" class="btn btn-primary" id="teSave" data-i18n="save"></button>
+        <button type="button" class="btn btn-ghost" id="teCancel" data-i18n="cancel"></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Time tracker: "Pause or Finish?" -->
+  <div id="stopModal" class="alarm" hidden>
+    <div class="alarm-box stop-box">
+      <div class="alarm-icon still">⏱</div>
+      <h3 id="stopTitle"></h3>
+      <p id="stopText" class="muted"></p>
+      <div class="actions stop-actions">
+        <button type="button" class="btn btn-ghost big" id="stopPause" data-i18n="pause"></button>
+        <button type="button" class="btn btn-primary big" id="stopFinish" data-i18n="finish"></button>
+      </div>
+      <button type="button" class="link-btn danger-text discard-btn" id="stopDiscard" data-i18n="discardTime"></button>
+      <button type="button" class="link-btn" id="stopCancel" data-i18n="cancel"></button>
+    </div>
+  </div>
+
+  <!-- Event form window -->
+  <div id="eventModal" class="alarm" hidden>
+    <form class="alarm-box modal-box" id="eventForm" autocomplete="off">
+      <h3 id="eventFormTitle"></h3>
+      <input type="hidden" id="eId" />
+      <label><span data-i18n="eventName"></span> *
+        <input type="text" id="eTitle" list="eventNames" maxlength="100" required data-i18n-ph="eventNamePh" />
+      </label>
+      <datalist id="eventNames"></datalist>
+      <div class="ev-picks" id="eventPicks"></div>
+      <select id="eRepeat" hidden aria-hidden="true"><option value="none"></option></select>
+      <div class="row">
+        <label><span data-i18n="startDate"></span> *
+          <input type="date" id="eStart" required />
+        </label>
+        <label><span data-i18n="endDate"></span>
+          <input type="date" id="eEnd" />
+        </label>
+      </div>
+      <label><span data-i18n="hour"></span> <span class="muted" data-i18n="optional"></span>
+        <input type="time" id="eTime" />
+      </label>
+      <div class="field">
+        <span class="field-label"><span data-i18n="address"></span> <span class="muted" data-i18n="optional"></span></span>
+        <div class="addr-row">
+          <input type="text" id="eAddress" data-i18n-ph="eventPlacePh" />
+          <button type="button" class="btn icon-btn" id="eAddrFind" data-i18n-title="addrSearchTitle">🔍</button>
+        </div>
+      </div>
+      <label><span data-i18n="notes"></span> <span class="muted" data-i18n="optional"></span>
+        <textarea id="eNotes" rows="2"></textarea>
+      </label>
+      <fieldset>
+        <legend data-i18n="alarmReminders"></legend>
+        <label class="check"><input type="checkbox" id="eRemWeek" /> <span data-i18n="remWeek"></span></label>
+        <label class="check"><input type="checkbox" id="eRemDay" /> <span data-i18n="remDueDay"></span></label>
+        <label class="check"><input type="checkbox" id="eRemStart" /> <span data-i18n="remStart"></span></label>
+      </fieldset>
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" data-i18n="save"></button>
+        <button type="button" class="btn btn-ghost" id="eCancel" data-i18n="cancel"></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Assignment form window -->
+  <div id="taskModal" class="alarm" hidden>
+    <form class="alarm-box modal-box" id="taskForm" autocomplete="off">
+      <h3 id="taskFormTitle"></h3>
+      <input type="hidden" id="tId" />
+      <label><span data-i18n="title"></span> *
+        <input type="text" id="tTitle" required data-i18n-ph="eventNamePh" />
+      </label>
+      <div class="ev-picks" id="taskPicks"></div>
+      <div class="row">
+        <label><span data-i18n="due"></span> *
+          <input type="date" id="tDueDate" required />
+        </label>
+        <label><span data-i18n="hour"></span> <span class="muted" data-i18n="optional"></span>
+          <input type="time" id="tDueTime" />
+        </label>
+      </div>
+      <div class="row">
+        <label><span data-i18n="assignedTo"></span>
+          <select id="tAssignee"></select>
+          <input type="text" id="tAssigneeOther" data-i18n-ph="typeName" hidden />
+        </label>
+        <label><span data-i18n="partner"></span>
+          <select id="tPartner"></select>
+          <input type="text" id="tPartnerOther" data-i18n-ph="typeName" hidden />
+        </label>
+      </div>
+      <label><span data-i18n="notes"></span> <span class="muted" data-i18n="optional"></span>
+        <textarea id="tNotes" rows="2"></textarea>
+      </label>
+      <fieldset>
+        <legend data-i18n="alarmReminders"></legend>
+        <label class="check"><input type="checkbox" id="tRemDay" /> <span data-i18n="remDueDay"></span></label>
+        <label class="check"><input type="checkbox" id="tRemHour" /> <span data-i18n="remDueHour"></span></label>
+        <label class="check"><input type="checkbox" id="tRemAt" /> <span data-i18n="remDueAt"></span></label>
+      </fieldset>
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" data-i18n="save"></button>
+        <button type="button" class="btn btn-ghost" id="tCancel" data-i18n="cancel"></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Contact form window -->
+  <div id="contactModal" class="alarm" hidden>
+    <form class="alarm-box modal-box" id="contactForm" autocomplete="off">
+      <h3 id="contactFormTitle"></h3>
+      <p class="muted small-text">🔒 <span data-i18n="contactPrivacy"></span></p>
+      <input type="hidden" id="cId" />
+      <input type="hidden" id="cPhoto" />
+      <div class="contact-photo-row">
+        <button type="button" class="avatar-btn" id="cPhotoBtn" data-i18n-title="addPhoto"></button>
+        <span class="muted" data-i18n="photoTapHint"></span>
+      </div>
+      <label><span data-i18n="name"></span> *
+        <input type="text" id="cName" required />
+      </label>
+      <div class="row">
+        <label><span data-i18n="phone"></span>
+          <input type="tel" id="cPhone" placeholder="+1 555 123 4567" />
+        </label>
+        <label><span data-i18n="relation"></span>
+          <select id="cRelation"></select>
+        </label>
+      </div>
+      <label><span data-i18n="email"></span>
+        <input type="email" id="cEmail" placeholder="name@example.com" />
+      </label>
+      <div class="field">
+        <span class="field-label" data-i18n="address"></span>
+        <div class="addr-row">
+          <input type="text" id="cAddress" />
+          <button type="button" class="btn icon-btn" id="cAddrFind" data-i18n-title="addrSearchTitle">🔍</button>
+        </div>
+        <input type="hidden" id="cLat" />
+        <input type="hidden" id="cLon" />
+      </div>
+      <label><span data-i18n="notes"></span>
+        <textarea id="cNotes" rows="2"></textarea>
+      </label>
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" data-i18n="save"></button>
+        <button type="button" class="btn btn-ghost" id="cCancel" data-i18n="cancel"></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Find-an-address window (used by notes and contacts) -->
+  <div id="addrModal" class="alarm" hidden>
+    <div class="alarm-box modal-box">
+      <h3 data-i18n="findAddr"></h3>
+      <p class="muted small-text" data-i18n="modalHint"></p>
+      <div class="addr-row">
+        <input type="text" id="mAddr" data-i18n-ph="modalPh" />
+        <button type="button" class="btn icon-btn" id="mSearch" data-i18n-title="addrSearchTitle">🔍</button>
+      </div>
+      <p class="addr-msg" id="mMsg"></p>
+      <ul class="suggest static" id="mResults" hidden></ul>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" id="mGps" data-i18n="myLocation"></button>
+        <button type="button" class="btn btn-ghost" id="mClose" data-i18n="close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alarm popup -->
+  <div id="alarm" class="alarm" hidden>
+    <div class="alarm-box">
+      <div class="alarm-icon">🔔</div>
+      <h3 id="alarmTitle"></h3>
+      <p id="alarmText"></p>
+      <div class="actions">
+        <button class="btn btn-primary" id="alarmDismiss" data-i18n="dismiss"></button>
+        <button class="btn btn-ghost" id="alarmSnooze" data-i18n="snooze"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="i18n-core.js?v=305"></script>
+  <script>document.write('<script src="lang/' + lang + '.js?v=305"><\/script>');</script>
+  <script src="lock.js?v=305"></script>
+  <script src="addresses.js?v=305"></script>
+  <script src="country.js?v=305"></script>
+  <!-- Online sync: your project details, and the Supabase library -->
+  <script src="config.js?v=305"></script>
+  <script src="supporter.js?v=305"></script>
+  <script src="storepay.js?v=305"></script>
+  <script src="vendor/supabase.js?v=305"></script><!-- Supabase 2.119.0, kept inside the app (works offline, opens faster) -->
+  <!-- Testing only: open the app with ?mock to use a simulated server instead of Supabase -->
+  <script>if (/[?&]mock\b/.test(location.search)) document.write('<script src="dev/mock-server.js?v=305"><\/script>');</script>
+  <!-- auth.js signs the person in, then loads contacts.js and app.js -->
+  <script src="auth.js?v=305"></script>
+</body>
+</html>

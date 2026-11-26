@@ -1,0 +1,13 @@
+MyServiceTime
+Copyright (c) 2026 the owner of MyServiceTime. All rights reserved.
+
+The MyServiceTime app, including its name, logo, design, texts, pictures and source code, is protected by
+copyright. No part of it may be copied, sold, rented, rebuilt, translated, published or used to make
+another app without the owner's written permission.
+
+People who use the app may do so under the Terms of Service (terms.html).
+
+Parts made by others keep their own licences:
+  - Leaflet (maps), BSD-2-Clause licence: https://leafletjs.com
+  - Map pictures and place data, (c) OpenStreetMap contributors (ODbL): https://www.openstreetmap.org/copyright
+  - supabase-js, MIT licence: https://github.com/supabase/supabase-js

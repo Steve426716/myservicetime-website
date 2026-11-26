@@ -1,0 +1,116 @@
+/* "Get the app" page (get.html) — light and dark, phones to big screens */
+:root { --text: #1f1b3a; --muted: #6b6890; --accent: #5b4bf0; --bg: #f6f5ff; --card: #fff; --border: #e4e1fb;
+  --grad: linear-gradient(135deg, #7c3aed, #3b82f6); }
+[data-theme="dark"] { --text: #ecebff; --muted: #a9a6cf; --accent: #a78bfa; --bg: #12111f; --card: #1d1b30; --border: #2e2b4a; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--text); line-height: 1.55;
+  background: radial-gradient(120% 60% at 80% 0%, rgba(124, 58, 237, .16), transparent 60%), var(--bg); min-height: 100vh; }
+a { color: var(--accent); }
+
+.g-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: 12px 20px; background: var(--grad); color: #fff; }
+.g-brand { display: inline-flex; align-items: center; gap: 9px; color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem; }
+.g-brand img { border-radius: 8px; box-shadow: 0 0 0 2px rgba(255, 255, 255, .35); }
+.g-top-right { display: flex; align-items: center; gap: 10px; }
+.g-lang { display: inline-flex; align-items: center; gap: 4px; }
+.g-lang select { font: inherit; font-size: .9rem; border: 0; border-radius: 10px; padding: 6px 8px; background: rgba(255, 255, 255, .92); color: #1f1b3a; max-width: 150px; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; }
+
+.g-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.g-btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 22px; border-radius: 14px; border: 0; cursor: pointer;
+  font: inherit; font-weight: 700; text-decoration: none; color: #fff; background: var(--grad); box-shadow: 0 8px 22px rgba(91, 75, 240, .3); }
+.g-btn-ghost { background: var(--card); color: var(--accent); border: 1px solid var(--border); box-shadow: none; }
+.g-btn-light { background: #fff; color: #5b4bf0; box-shadow: none; padding: 8px 16px; font-size: .9rem; }
+
+/* hero: words on the left, the iPad and phone on the right */
+.g-hero { display: grid; grid-template-columns: 1fr 1.15fr; gap: 30px; align-items: center; padding: 44px 0 30px; }
+.g-hero h1 { font-size: clamp(2rem, 4.4vw, 3.1rem); line-height: 1.12; margin: 0 0 14px;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.g-sub { font-size: 1.12rem; color: var(--muted); margin: 0 0 22px; }
+
+.g-devices { position: relative; aspect-ratio: 0.94; max-width: 520px; width: 100%; justify-self: center; }
+.g-ipad, .g-phone { position: absolute; background: #0f0e17; box-shadow: 0 30px 60px rgba(30, 20, 90, .28), inset 0 0 0 2px #2a2840; }
+.g-ipad img, .g-phone img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.g-ipad { right: 0; top: 0; width: 74%; aspect-ratio: 820 / 1180; padding: 3.2%; border-radius: 7% / 5%; }
+.g-ipad img { border-radius: 3% / 2%; }
+.g-phone { left: 0; bottom: 0; width: 33%; aspect-ratio: 390 / 844; padding: 2.4%; border-radius: 15% / 7%; }
+.g-phone img { border-radius: 12% / 5.6%; }
+
+.g-card { background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 26px; margin: 22px 0;
+  box-shadow: 0 6px 24px rgba(60, 50, 160, .07); }
+.g-card h2 { margin: 0 0 8px; font-size: 1.35rem; }
+
+.g-qr-card { display: flex; gap: 28px; align-items: center; }
+.g-qr { flex: none; width: 210px; height: 210px; padding: 10px; background: #fff; border-radius: 18px; border: 1px solid var(--border); }
+.g-qr svg { width: 100%; height: 100%; display: block; }
+.g-qr-text p { margin: 0 0 10px; color: var(--muted); }
+.g-link { font-weight: 700; color: var(--accent) !important; word-break: break-all; }
+.g-msg { min-height: 1.3em; margin: 10px 0 0 !important; font-weight: 600; color: #16a34a !important; }
+
+.g-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
+.g-step { display: flex; gap: 12px; align-items: flex-start; }
+.g-step p { margin: 4px 0 0; color: var(--muted); font-size: .95rem; }
+.g-step-ic { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(124, 58, 237, .12); }
+.g-step-ic svg { width: 24px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.g-foot { text-align: center; color: var(--muted); font-size: .9rem; padding: 10px 20px 30px; }
+.g-foot p { margin: 6px 0 0; }
+
+@media (max-width: 860px) {
+  .g-hero { grid-template-columns: 1fr; text-align: center; padding-top: 30px; }
+  .g-btns { justify-content: center; }
+  .g-devices { max-width: 400px; margin-bottom: 6px; }
+  .g-qr-card { flex-direction: column; text-align: center; }
+  .g-steps { grid-template-columns: 1fr; text-align: start; }
+}
+@media (max-width: 480px) {
+  .g-top { padding: 10px 14px; }
+  .g-top-right .g-btn-light { display: none; }
+  .g-card { padding: 20px; }
+  .g-qr { width: 190px; height: 190px; }
+}
+/* What you'll find inside, and why you'll love it */
+.g-section { margin: 26px 0 8px; }
+.g-h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 18px; text-align: center; }
+.g-h2-in { margin-bottom: 20px; }
+.g-feats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.g-feat { background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 16px 16px 18px; box-shadow: 0 6px 24px rgba(60, 50, 160, .07); }
+.g-feat h3 { margin: 14px 0 6px; font-size: 1.08rem; }
+.g-feat p { margin: 0; color: var(--muted); font-size: .95rem; }
+.g-mini { background: #0f0e17; padding: 6px; border-radius: 22px; box-shadow: inset 0 0 0 2px #2a2840; aspect-ratio: 390 / 600; overflow: hidden; }
+.g-mini img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 17px; }
+.g-more { text-align: center; color: var(--muted); margin: 18px auto 0; max-width: 720px; }
+.g-why { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 28px; }
+.g-why-item { display: flex; gap: 14px; align-items: flex-start; }
+.g-why-item h3 { margin: 2px 0 4px; font-size: 1.05rem; }
+.g-why-item p { margin: 0; color: var(--muted); }
+@media (max-width: 960px) { .g-feats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .g-why { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .g-feats { grid-template-columns: 1fr 1fr; gap: 12px; } .g-feat { padding: 10px 10px 14px; border-radius: 18px; } .g-feat h3 { font-size: .98rem; margin-top: 10px; } .g-feat p { font-size: .86rem; } .g-mini { border-radius: 16px; padding: 4px; } .g-mini img { border-radius: 13px; } }
+/* "Get the app" label above the title */
+.g-kicker { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; margin-bottom: 14px;
+  font-weight: 700; font-size: .92rem; color: var(--accent); background: rgba(124, 58, 237, .12); border: 1px solid rgba(124, 58, 237, .25); }
+.g-kicker svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+/* the watch (coming soon), in front of the iPad's lower right corner */
+.g-watch { position: absolute; right: -4%; bottom: 3%; width: 23%; display: flex; flex-direction: column; align-items: center; z-index: 3; }
+.g-band { width: 62%; height: 15%; aspect-ratio: 1 / .55; background: linear-gradient(180deg, #4c3a9e, #2c2466); }
+.g-band-top { border-radius: 30% 30% 10% 10% / 60% 60% 18% 18%; margin-bottom: -6%; }
+.g-band-bottom { border-radius: 10% 10% 30% 30% / 18% 18% 60% 60%; margin-top: -6%; }
+.g-case { position: relative; width: 100%; aspect-ratio: 1 / 1.18; border-radius: 30%; padding: 8%; background: linear-gradient(145deg, #3a3854, #14131f);
+  box-shadow: 0 22px 40px rgba(30, 20, 90, .35), inset 0 0 0 2px #4a4766; }
+.g-case::after { content: ""; position: absolute; right: -5%; top: 30%; width: 6%; height: 16%; border-radius: 3px; background: #4a4766; }
+.g-face { width: 100%; height: 100%; border-radius: 24%; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3%; color: #fff; text-align: center; container-type: inline-size; }
+.g-face img { width: 26%; border-radius: 22%; }
+.g-w-label { font-size: 9cqw; color: #c4b5fd; font-weight: 600; line-height: 1.1; padding: 0 6%; }
+.g-w-time { font-size: 19cqw; color: #4ade80; font-variant-numeric: tabular-nums; letter-spacing: -.02em; line-height: 1; }
+.g-w-btns { display: flex; gap: 8%; width: 70%; justify-content: center; }
+.g-w-btns i { font-style: normal; font-size: 9cqw; width: 38%; padding: 3% 0; border-radius: 99px; background: #2a2645; color: #e9e5ff; }
+.g-soon { margin-top: 8%; white-space: nowrap; font-size: .78rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; color: #fff; background: var(--grad);
+  box-shadow: 0 6px 16px rgba(91, 75, 240, .35); }
+@media (max-width: 860px) { .g-watch { right: 0; } .g-soon { align-self: flex-end; } }
+@media (max-width: 480px) { .g-watch { width: 25%; } .g-soon { font-size: .68rem; padding: 3px 8px; } }
+.g-help { margin: 0 0 10px !important; font-size: .95rem; } .g-help[hidden] { display: none; } .g-help a { font-weight: 700; }
+/* the top bar: the same solid dark navy as the app */
+.g-top { background: #101b3f; }

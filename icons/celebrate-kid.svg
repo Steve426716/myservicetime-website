@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 220" role="img" aria-label="">
+  <!-- MyServiceTime original art: two happy kids jumping for joy next to a cup of coffee -->
+  <style>
+    .ck-boy { animation: jump .9s cubic-bezier(.3,.7,.4,1) infinite; transform-origin: 96px 180px; }
+    .ck-girl { animation: jump .9s cubic-bezier(.3,.7,.4,1) .45s infinite; transform-origin: 196px 180px; }
+    .ck-arms-b { animation: wave .45s ease-in-out infinite alternate; transform-origin: 96px 104px; }
+    .ck-arms-g { animation: wave .45s ease-in-out .2s infinite alternate; transform-origin: 196px 108px; }
+    .ck-shadow-b { animation: shadow .9s cubic-bezier(.3,.7,.4,1) infinite; transform-origin: 96px 208px; }
+    .ck-shadow-g { animation: shadow .9s cubic-bezier(.3,.7,.4,1) .45s infinite; transform-origin: 196px 208px; }
+    .ck-steam { animation: steam 1.6s ease-in-out infinite; }
+    .ck-steam.s2 { animation-delay: .5s; }
+    .ck-sparkle { animation: twinkle 1.1s ease-in-out infinite alternate; }
+    @keyframes jump { 0%,100% { transform: translateY(0) scale(1.04, .96); } 15% { transform: translateY(0) scale(1); } 50% { transform: translateY(-34px) scale(1); } 85% { transform: translateY(0) scale(1); } }
+    @keyframes wave { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+    @keyframes shadow { 0%,100% { transform: scale(1); opacity: .18; } 50% { transform: scale(.65); opacity: .1; } }
+    @keyframes steam { 0% { opacity: 0; transform: translateY(6px); } 40% { opacity: .85; } 100% { opacity: 0; transform: translateY(-10px); } }
+    @keyframes twinkle { from { opacity: .35; } to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+  <defs>
+    <linearGradient id="shirtB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#059669"/></linearGradient>
+    <linearGradient id="shirtG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fcd34d"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+    <linearGradient id="mug" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fb923c"/><stop offset="1" stop-color="#ea580c"/></linearGradient>
+  </defs>
+
+  <!-- shadows on the ground -->
+  <ellipse class="ck-shadow-b" cx="96" cy="208" rx="40" ry="7" fill="#000" opacity=".18"/>
+  <ellipse class="ck-shadow-g" cx="196" cy="208" rx="38" ry="7" fill="#000" opacity=".18"/>
+  <ellipse cx="290" cy="208" rx="30" ry="6" fill="#000" opacity=".18"/>
+
+  <!-- the boy: curly hair, green star shirt -->
+  <g class="ck-boy">
+    <path d="M84 150 q-10 18 -22 22" stroke="#1e3a8a" stroke-width="13" stroke-linecap="round" fill="none"/>
+    <path d="M108 150 q12 16 24 18" stroke="#1e3a8a" stroke-width="13" stroke-linecap="round" fill="none"/>
+    <ellipse cx="58" cy="175" rx="11" ry="7" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
+    <ellipse cx="136" cy="170" rx="11" ry="7" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
+    <g class="ck-arms-b">
+      <path d="M78 104 q-22 -14 -26 -44" stroke="#c68a5e" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path d="M114 104 q22 -14 26 -44" stroke="#c68a5e" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <circle cx="51" cy="56" r="9" fill="#c68a5e"/>
+      <circle cx="141" cy="56" r="9" fill="#c68a5e"/>
+    </g>
+    <path d="M70 100 q26 -12 52 0 l6 52 q-32 10 -64 0 z" fill="url(#shirtB)"/>
+    <path d="M96 116 l4.5 9 10 1.4 -7.2 7 1.7 9.9 -9 -4.7 -9 4.7 1.7 -9.9 -7.2 -7 10 -1.4 z" fill="#fde68a"/>
+    <circle cx="96" cy="70" r="30" fill="#c68a5e"/>
+    <g fill="#3b2314">
+      <circle cx="72" cy="52" r="11"/><circle cx="84" cy="42" r="12"/><circle cx="98" cy="38" r="12"/>
+      <circle cx="112" cy="43" r="12"/><circle cx="122" cy="54" r="10"/><circle cx="68" cy="64" r="8"/><circle cx="125" cy="66" r="7"/>
+    </g>
+    <path d="M80 72 q6 -7 12 0" stroke="#3b2314" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M100 72 q6 -7 12 0" stroke="#3b2314" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <circle cx="78" cy="82" r="5" fill="#f87171" opacity=".55"/>
+    <circle cx="114" cy="82" r="5" fill="#f87171" opacity=".55"/>
+    <path d="M84 84 q12 16 24 0 z" fill="#7f1d1d"/>
+    <path d="M89 87 q7 6 14 0" fill="#fca5a5"/>
+  </g>
+
+  <!-- the girl: auburn hair in a high bun with a teal bow, sunny yellow top with a heart, teal skirt -->
+  <g class="ck-girl">
+    <path d="M186 158 q-8 16 -18 20" stroke="#fde7d4" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <path d="M206 158 q10 14 20 16" stroke="#fde7d4" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <ellipse cx="165" cy="180" rx="10" ry="6.5" fill="#ef4444" stroke="#7f1d1d" stroke-width="2.5"/>
+    <ellipse cx="229" cy="175" rx="10" ry="6.5" fill="#ef4444" stroke="#7f1d1d" stroke-width="2.5"/>
+    <g class="ck-arms-g">
+      <path d="M180 110 q-24 -10 -30 -40" stroke="#fde7d4" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M212 110 q24 -10 30 -40" stroke="#fde7d4" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <circle cx="149" cy="66" r="8.5" fill="#fde7d4"/>
+      <circle cx="243" cy="66" r="8.5" fill="#fde7d4"/>
+    </g>
+    <path d="M174 140 h44 l14 26 q-36 10 -72 0 z" fill="#14b8a6"/>
+    <path d="M174 106 q22 -10 44 0 l2 38 h-48 z" fill="url(#shirtG)"/>
+    <path d="M196 132 c-7 -5 -12 -9 -8 -14 c3 -3 7 -1 8 2 c1 -3 5 -5 8 -2 c4 5 -1 9 -8 14 z" fill="#ef4444"/>
+    <!-- head and hair -->
+    <circle cx="196" cy="80" r="27" fill="#fde7d4"/>
+    <circle cx="196" cy="42" r="14" fill="#b4532a"/>
+    <path d="M169 84 q-3 -34 27 -34 q30 0 27 34 q-6 -18 -27 -20 q-21 2 -27 20 z" fill="#b4532a"/>
+    <path d="M182 32 l-12 -6 v14 z M210 32 l12 -6 v14 z" fill="#14b8a6"/>
+    <circle cx="196" cy="33" r="4" fill="#0f766e"/>
+    <!-- happy face: open sparkly eyes, freckles, big smile -->
+    <circle cx="186" cy="82" r="4.5" fill="#3b2314"/><circle cx="206" cy="82" r="4.5" fill="#3b2314"/>
+    <circle cx="187.5" cy="80.5" r="1.4" fill="#fff"/><circle cx="207.5" cy="80.5" r="1.4" fill="#fff"/>
+    <g fill="#d97757" opacity=".7"><circle cx="179" cy="90" r="1.2"/><circle cx="182" cy="92" r="1.2"/><circle cx="210" cy="92" r="1.2"/><circle cx="213" cy="90" r="1.2"/></g>
+    <circle cx="178" cy="93" r="4.5" fill="#fb7185" opacity=".45"/><circle cx="214" cy="93" r="4.5" fill="#fb7185" opacity=".45"/>
+    <path d="M185 92 q11 15 22 0 z" fill="#7f1d1d"/>
+    <path d="M190 95 q6 5 12 0" fill="#fca5a5"/>
+  </g>
+
+  <!-- the cup of coffee, with steam and a little heart -->
+  <g class="ck-mug">
+    <path class="ck-steam" d="M277 128 q-8 -10 0 -20 q8 -10 0 -20" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" fill="none" opacity=".8"/>
+    <path class="ck-steam s2" d="M295 128 q-8 -10 0 -20 q8 -10 0 -20" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" fill="none" opacity=".8"/>
+    <path d="M263 136 h50 l-5 64 q-1 8 -9 8 h-22 q-8 0 -9 -8 z" fill="url(#mug)"/>
+    <path d="M311 148 q22 0 20 20 q-2 18 -24 16" stroke="#ea580c" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="288" cy="137" rx="25" ry="6" fill="#7c2d12"/>
+    <ellipse cx="288" cy="136" rx="20" ry="3.5" fill="#a16207"/>
+    <path d="M288 178 c-8 -6 -14 -10 -9 -16 c3 -4 8 -2 9 2 c1 -4 6 -6 9 -2 c5 6 -1 10 -9 16 z" fill="#fff" opacity=".9"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#fde047" class="ck-sparkle">
+    <path d="M24 40 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z"/>
+    <path d="M146 18 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5 z"/>
+    <path d="M252 40 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5 z"/>
+    <path d="M325 96 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+  </g>
+</svg>

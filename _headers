@@ -1,0 +1,8 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(self), geolocation=(self), microphone=()
+/sw.js
+  Cache-Control: no-cache
+/version.json
+  Cache-Control: no-cache
